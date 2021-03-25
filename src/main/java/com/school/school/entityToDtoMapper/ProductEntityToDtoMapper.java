@@ -1,0 +1,21 @@
+package com.school.school.entityToDtoMapper;
+
+import com.school.school.dto.ProductDto;
+import com.school.school.entity.Product;
+
+public class ProductEntityToDtoMapper {
+
+    public static ProductDto getProductDto(ProductDto productDto, Product product){
+        productDto.setId(product.getId());
+        productDto.setName(product.getName());
+        productDto.setIsExpire(product.getIsExpire());
+        productDto.setDateCreated(product.getDateCreated());
+
+        return productDto;
+
+    }
+
+
+
+
+}
