@@ -8,7 +8,7 @@ import java.util.List;
 public interface ProductDao extends JpaRepository<Product,Integer> {
 
 
-    List<Product> findAllByStatus(String status);
+    List<Product> findAllByStatus (String status);
     Product findByName(String name );
 
 

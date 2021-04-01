@@ -6,7 +6,7 @@ import com.school.school.entity.Subscription;
 
 public class MemberEntityToDtoMapper  {
 
-    public static MemberDto getMemberDto (MemberDto memberDto, Member member,Subscription subscription){
+    public static MemberDto getMemberDto (MemberDto memberDto, Member member){
         memberDto.setId(member.getId());
         memberDto.setFirstName(member.getFirstName());
         memberDto.setLastName(member.getLastName());
@@ -22,7 +22,7 @@ public class MemberEntityToDtoMapper  {
         memberDto.setGender(member.getGender());
         memberDto.setNic(member.getNic());
         memberDto.setTitle(member.getTitle());
-        memberDto.setSubscription(subscription.getId());
+
 
         return memberDto;
 

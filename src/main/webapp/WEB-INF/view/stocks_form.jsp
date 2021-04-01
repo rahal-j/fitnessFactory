@@ -6,7 +6,7 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="UTF-8"/>
-    <title>Fitness Factory | Products </title>
+    <title>Fitness Factory | Stocks </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta content="" name="description"/>
     <meta content="" name="author"/>
@@ -41,7 +41,7 @@
         <div class="inner" style="min-height: 700px;">
             <ul class="breadcrumb" style="margin-top:2%;">
                 <li><a href="/home">Home</a></li>
-                <li><a href="/product/insertPage">Add Product</a></li>
+                <li><a href="/stocks/insertPage">Add Subscription</a></li>
             </ul>
             <div class="row">
 
@@ -52,7 +52,7 @@
                             <div class="icons">
                                 <i class="icon-glass"></i>
                             </div>
-                            <h5>Enter Product Details</h5>
+                            <h5>Enter Stocks Details</h5>
                         </header>
 
 
@@ -60,7 +60,7 @@
 
 
 
-                        <form id="productForm" class="form-horizontal" align="center"
+                        <form id="subscriptionForm" class="form-horizontal" align="center"
                               novalidate>
 
 
@@ -68,66 +68,52 @@
                             <div class="row">
                                 <div class="form-group">
                                     <div class="col-md-4">
-                                        <label class="control-label col-md-5" style="float: right;"> Product ID</label>
+                                        <label class="control-label col-md-5 style="
+                                               style="float: right;">Product</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" id="id" name="id"
-                                               readonly="readonly" class="form-control"
-                                               value="<c:out value="${product.id}" />"/>
+                                        <select name="product" id="product" class="form-control">
+                                            <option value="<c:out value="${product.id}" />">${product.name}</option>
+                                            <%--<option value="${userReg.userRole}">Select User Role</option>--%>
+                                            <c:forEach items="${products}" var="temp">
+                                                <option value="<c:out value= "${temp.id}" />">${temp.name}</option>
+                                            </c:forEach>
+
+                                        </select>
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label class="control-label col-md-5"
+                                               style="float: right;">Batch</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" id="batch" name="name"
+                                               placeholder="Batch" class="form-control"
+                                               value="<c:out value="${batch.name}" />"/>
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <div class="row">
                                 <div class="form-group">
                                     <div class="col-md-4">
                                         <label class="control-label col-md-5"
-                                               style="float: right;">Name</label>
+                                               style="float: right;">Amount</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" id="name" name="name"
-                                               placeholder="Enter Product Name" class="form-control"
-                                               value="<c:out value="${product.name}" />"/>
+                                        <input type="text" id="Amount" name="Amount"
+                                               placeholder="Amount" class="form-control"
+                                               value="<c:out value="${amount.name}" />"/>
                                     </div>
                                 </div>
                             </div>
 
 
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-md-4">
-                                        <label class="control-label col-md-5 style="
-                                               style="float: right;">Is Expire</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <select name="isExpire" id="isExpire" class="form-control">
-                                            <option value="">Is Expire</option>
-                                            <option value="1" <c:if test="${product.isExpire == '1'}"> <c:out value= "selected=selected"/></c:if>>Yes</option>
-                                            <option value="0" <c:if test="${product.isExpire == '0'}"> <c:out value= "selected=selected"/></c:if>>No</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-md-4">
-                                        <label class="control-label col-md-5 style="
-                                               style="float: right;">Status</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <select name="status" id="subscriptionStatus" class="form-control">
-                                            <option value="">Select Status</option>
-                                            <option value="ACTIVE" <c:if test="${product.status == 'ACTIVE'}"> <c:out
-                                                    value="selected=selected"/></c:if>>ACTIVE
-                                            </option>
-                                            <option value="DEACTIVE" <c:if test="${product.status == 'DEACTIVE'}">
-                                                <c:out value="selected=selected"/></c:if>>DEACTIVE
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="row">
                                 <div class="form-actions no-margin-bottom"
@@ -147,7 +133,6 @@
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
 
@@ -176,15 +161,15 @@
         $(function() {
             formValidation();
         });
-        $("#productForm").submit(
+        $("#subscriptionForm").submit(
             function (e) {
                 e.preventDefault();
-                if (!$("#productForm").valid())
+                if (!$("#subscriptionForm").valid())
                     return false;
-                var formData = getFormDataAsDTO("productForm");
+                var formData = getFormDataAsDTO("subscriptionForm");
                 $.ajax({
                     type: "POST",
-                    url: "/product/save",
+                    url: "/subscription/save",
                     dataType: 'json',
                     contentType: 'application/json',
                     data: formData,
@@ -201,7 +186,7 @@
                                     closeOnConfirm: false
                                 },
                                 function () {
-                                    window.location = "/product/";
+                                    window.location = "/subscription/";
                                 });
                         } else {
                             swal(

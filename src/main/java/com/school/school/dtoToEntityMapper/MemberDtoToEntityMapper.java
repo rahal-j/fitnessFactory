@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class MemberDtoToEntityMapper {
 
-    public static Member getMemberEntity(MemberDto memberDto, Member member, Subscription subscription){
+    public static Member getMemberEntity(MemberDto memberDto, Member member){
 
         member.setId(member.getId() !=null? member.getId() : memberDto.getId());
         member.setFirstName(memberDto.getFirstName());
@@ -26,7 +26,7 @@ public class MemberDtoToEntityMapper {
         member.setGender(memberDto.getGender());
         member.setNic(memberDto.getNic());
         member.setTitle(memberDto.getTitle());
-        member.setSubscription(subscription);
+
 
         return member;
 

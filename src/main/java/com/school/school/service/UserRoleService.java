@@ -12,4 +12,6 @@ public interface UserRoleService {
     List<UserRole> fetchUserRole();
 
     List<UserRoleDto> getActiveUserRoleList();
+
+    ResponseDto getUserRoleData(int id);
 }

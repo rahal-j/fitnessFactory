@@ -62,6 +62,11 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     }
 
+    @Override
+    public ResponseDto getUserRoleData(int id){
+        return new ResponseDto(UserRoleEntityToDtoMapper.getUserRoleDto(new UserRoleDto(),userRoleDao.getOne(id)));
+    }
+
 
 
 

@@ -34,6 +34,13 @@ public class UserRoleController {
 
     }
 
+    @GetMapping("/getUpdateData")
+    public String getUserRoledata (@RequestParam int id, Model model){
+        model.addAttribute("userRole",userRoleService.getUserRoleData(id).getData());
+        return "userRole_form";
+
+    }
+
 
 
 

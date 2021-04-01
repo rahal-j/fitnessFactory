@@ -39,8 +39,10 @@ public class MemberServiceImpl implements MemberService {
         ResponseDto responseDto =new ResponseDto(ResponseEnum.FAIL.getCode(),"Transaction Failed");
         try {
             UserRole userRole = userRoleDao.findByName(UserRolesEnum.MEMBER.getCode());
+/*
             Subscription subscription = subscriptionDao.getOne(memberDto.getSubscription());
-            Member member = MemberDtoToEntityMapper.getMemberEntity(memberDto, new Member(),subscription);
+*/
+            Member member = MemberDtoToEntityMapper.getMemberEntity(memberDto, new Member());
               memberDao.save(member);
               responseDto.setCode(ResponseEnum.SUCCESS.getCode());
               responseDto.setMessage("Member Save Successful");
@@ -92,14 +94,14 @@ public class MemberServiceImpl implements MemberService {
 
         Member member = new Member();
         member = memberDao.getOne(id);
-
+/*
         Subscription subscription = new Subscription();
-        subscription = subscriptionDao.getOne(id);
+        subscription = subscriptionDao.getOne(id);*/
 
 
 
 
-        return new ResponseDto(MemberEntityToDtoMapper.getMemberDto(new MemberDto(),member,subscription));
+        return new ResponseDto(MemberEntityToDtoMapper.getMemberDto(new MemberDto(),member));
     }
 
 

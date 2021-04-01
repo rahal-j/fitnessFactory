@@ -61,188 +61,118 @@
                             <h5>Enter Class Room Details</h5>
                         </header>
 
-                        <form id="roomScheduleForm" class="form-horizontal" align="center"
-                              novalidate>
-
-
-                            </br>
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-md-4">
-                                        <label class="control-label col-md-5" style="float: right;"> Room Schedule
-                                            ID</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input type="text" id="id" name="id"
-                                               readonly="readonly" class="form-control"
-                                               value="<c:out value="${roomSchedule.id}" />"/>
-                                    </div>
-                                </div>
-                            </div>
+                        <form action="BasicSheduleCon" id="workoutChartForm" method="POST"
+                              enctype="multipart/form-data">
 
 
                             <div class="row">
                                 <div class="form-group">
-                                    <div class="col-md-4">
-                                        <label class="control-label col-md-5"
-                                               style="float: right;"> Class Room</label>
-                                    </div>
-                                    <div class="col-md-4">
-
-                                        <select name="room"
-                                                class="form-control chzn-select" id=room>
-
-                                            <option value="<c:out value="${room.id}" />">${room.name}</option>
-                                            <c:forEach items="${rooms}" var="temp">
-                                                <option value="<c:out value= "${temp.id}" />">${temp.name}</option>
-                                            </c:forEach>
-                                        </select>
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-md-4">
-                                        <label class="control-label col-md-5"
-                                               style="float: right;">Course Name</label>
-                                    </div>
-                                    <div class="col-md-4">
-
-                                        <select name="course"
-                                                class="form-control chzn-select" id="course">
-
-                                            <option value="<c:out value="${course.id}" />">${course.name}</option>
-                                            <c:forEach items="${courses}" var="temp">
-                                                <option value="<c:out value= "${temp.id}" />">${temp.name}</option>
-                                            </c:forEach>
-                                        </select>
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <%--         <div class="row">
-
-                                         <div class="form-group">
-                                             <div class="col-md-4">
-                                                 <label class="control-label col-md-5"
-                                                        style="float: right;">Course Start Date</label></div>
-                                             <div class="col-md-4">
-                                                 <div id="sandbox-container">
-                                                     <div class="input-group date">
-                                                         <input type="text" placeholder="YYYY-MM-DD" name="dob"
-                                                                id="dob" class="all form-control"
-                                                                value=""><span
-                                                             class="input-group-addon"><li
-                                                             class="glyphicon glyphicon-th"></li></span>
-                                                     </div>
-                                                 </div>
-                                             </div>
-                                         </div>
-                                     </div>--%>
-
-                            <div class="row">
-                                <div class="form-group">
-
-                                    <div class="col-md-4">
-                                        <label class="control-label col-md-5"
-                                               style="float: right;">Course Start Date</label></div>
-                                    <div class="col-md-4">
-
-
-                                             <div class='input-group date' id='startTime'>
-                                                <input type='text' name="startTime" class="form-control" value="<c:out value="${roomSchedule.startTime}" />">
-                                                <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-time"></span>
-                    </span>
-                                            </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="form-group">
-
-                                    <div class="col-md-4">
-                                        <label class="control-label col-md-5"
-                                               style="float: right;">Course End Date</label></div>
-
-
-
-
-                                    <div class="col-md-4">
-
-
-                                             <div class='input-group date' id='endTime'>
-                                                <input type='text' name="endTime" class="form-control" value="<c:out value="${roomSchedule.endTime}" />">
-                                                <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-time"></span>
-                    </span>
-                                            </div>
-
-
-                                    </div>
-
-
-
-<%--
-                                    <div class="col-md-4">
-
-
-                                        <div class="form-group">
-                                            <div class='input-group date' id='endDate'>
-                                                <input type='text' class="form-control" name="endDate"
-                                                       value="<c:out value="${course.endDate}" />">
-                                                <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </span>
-                                            </div>
+                                    <div class="col-md-12">
+                                        <div class="col-md-3">
+                                            <label>Workout ID </label> <input class="form-control"
+                                                                              name="workout_id" value="${workoutID}" readonly="readonly" />
                                         </div>
+                                        <div class="col-md-3">
+                                            <label> Instructor Name</label> <input class="form-control"
+                                                                                   name="ins_name" value=${currentSessionUser.first_name }
+                                                                                           readonly="readonly" />
+                                        </div>
+                                    </div>
+                                </div>
 
-                                    </div>--%>
+                            </div>
+                            </br>
+                            <div class="row "style="">
+                                <div class="col-sm-12">
+                                    <div class="col-md-3">
+                                        <div class="form-group" style="margin-left: -1%;">
+                                            <label for="chartName">Workchart Name</label></div>
+
+                                        <div class="form-group" style="margin-top:-1%;" >
+                                            <input id="text2" placeholder="please enter a workchart name" class="form-control" type="text" name="chartName">
+                                        </div></div>
+
                                 </div>
                             </div>
-
-
+                            <hr />
+                            <div class="col-md-1"></div>
                             <div class="row">
-                                <div class="form-group">
-                                    <div class="col-md-4">
-                                        <label class="control-label col-md-5 style="
-                                               style="float: right;">Status</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <select name="status" id="status" class="form-control">
-                                            <option value="">Select Status</option>
-                                            <option value='ACTIVE' <c:if test="${roomSchedule.status == 'ACTIVE'}"> <c:out
-                                                    value="selected=selected"/></c:if>>ACTIVE
-                                            </option>
-                                            <option value='DEACTIVE' <c:if test="${roomSchedule.status == 'DEACTIVE'}"> <c:out
-                                                    value="selected=selected"/></c:if>>DEACTIVE
-                                            </option>
+                                <div class="col-md-4 text-center">
+                                    <strong>Exercise ID</strong>
+                                </div>
+
+                                <div class="col-md-2 text-center">
+                                    <strong>Sets per rep</strong>
+                                </div>
+
+                                <div class="col-md-2 text-center">
+                                    <strong>No of Reps</strong>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <strong></strong>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="inv_body">
+                                <div class="row inv_row " id="exer">
+                                    <div class="col-md-4 text-center" style="margin-left: 1%;">
+                                        <select id="exercise0" name="exerciseID"
+                                                class="form-control chzn-select inv_item keep">
+
                                         </select>
                                     </div>
+                                    <div class="col-md-2 text-center form-group">
+                                        <input id="set_per_rep0" style="text-align: right;"
+                                               class="form-control inv_price" name="set_per_rep" type="text" />
+                                    </div>
+
+                                    <div class="col-md-2 text-center form-group">
+                                        <input class="form-control" name="no_of_rep" id="no_of_rep0"
+                                               type="text" style="text-align: right;" />
+                                    </div>
+                                    <div class="col-md-1 text-center">
+                                        <button id="kmk" class="btn btn-danger  item_remove"
+                                                type="button">
+                                            <i class="icon-minus-sign"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                            <br />
+                            <div class="row">
+                                <div class="col-md-6"></div>
+
+                                <div class="col-md-3 pull-right">
+                                    <button id="add-item" class="btn btn-info" type="button">
+                                        <i class="icon-plus-sign"></i>
+                                    </button>
                                 </div>
                             </div>
+                            <br />
+
 
                             <div class="row">
                                 <div class="form-actions no-margin-bottom"
                                      style="text-align: center;">
                                     <div class="col-sm-3"></div>
                                     <div class="col-sm-6">
-                                        <div>
-                                            <input id="btn_save"
-                                                   value="Save" class="btn btn-success btn-md " type="submit">
+                                        <div style="margin-left: -20%;">
+                                            <%
+                                                String role = currentUser.getRole();
+
+                                                if (role.equals("administrator") || role.equals("instructor")) {
+                                            %>
+                                            <button type="submit" class="btn-sm btn-success">Save</button>
+                                            <%
+                                                }
+                                            %>
                                             <input id="btn_reset" value="Reset"
-                                                   class="btn btn-warning btn-md " type="reset"/> <a
-                                                class="btn btn-danger btn-md"
-                                                href="/roomSchedule/">Cancel</a>
+                                                   class="btn btn-warning btn-sm " type="reset" /> <a
+                                                class="btn btn-primary btn-sm" href="ProductCon?action=list">Cancel</a>
                                         </div>
 
                                     </div>

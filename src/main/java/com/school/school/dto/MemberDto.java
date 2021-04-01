@@ -1,8 +1,9 @@
 package com.school.school.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class MemberDto {
+public class MemberDto implements Serializable {
 
     private Integer id;
     private Integer subscription;

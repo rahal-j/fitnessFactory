@@ -9,6 +9,7 @@ public class ProductEntityToDtoMapper {
         productDto.setId(product.getId());
         productDto.setName(product.getName());
         productDto.setIsExpire(product.getIsExpire());
+        productDto.setStatus(product.getStatus());
         productDto.setDateCreated(product.getDateCreated());
 
         return productDto;
