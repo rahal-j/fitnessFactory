@@ -1,6 +1,7 @@
 package com.school.school.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table (name = "schedule")
@@ -14,14 +15,54 @@ private Integer scheduleId;
     @Column(name = "name")
 private String name;
 
-    @Column(name = "status")
-private String status;
+    @Column(name = "sets")
+    private int sets;
+
+    @Column(name = "reps")
+    private int reps;
+
+    @Column(name = "member_id")
+    private Integer memberId;
 
     @Column(name = "exercise_id")
 private Integer exerciseId;
 
+    @Column(name = "date")
+    private Date date;
 
     public Schedule() {
+    }
+
+    public int getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(int memberId) {
+        this.memberId = memberId;
+    }
+
+    public int getSets() {
+        return sets;
+    }
+
+    public void setSets(int sets) {
+        this.sets = sets;
+    }
+
+    public int getReps() {
+        return reps;
+    }
+
+    public void setReps(int reps) {
+        this.reps = reps;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public Integer getScheduleId() {
@@ -38,14 +79,6 @@ private Integer exerciseId;
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public Integer getExerciseId() {

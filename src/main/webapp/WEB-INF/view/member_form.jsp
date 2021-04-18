@@ -189,6 +189,7 @@
                                                     class="glyphicon glyphicon-th"></i></span>
                                             </div>
                                         </div>
+s
                                     </div>
                                 </div>
                             </div>
@@ -284,7 +285,19 @@
 <!--END FOOTER -->
 
 <%@include file="footer_src.jsp" %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>--%>
+
+
+<%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>--%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.standalone.css">
+<!-- Bootstrap -->
+<%--<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
+<!-- Main jQuery -->
+<%--<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>--%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js">
+</script>
+
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -343,16 +356,16 @@
     }
 </script>
 <script>
-    $('.date').datepicker({
-        endDate: '-16y',
+
+    $('#sandbox-container .input-group.date').datepicker({
+
+        endDate: "-16y",
         startView: 1,
         clearBtn: true,
         calendarWeeks: true,
         autoclose: true,
-        format: 'yyyy-mm-dd',
         todayHighlight: true
     });
-
 
 </script>
 </body>

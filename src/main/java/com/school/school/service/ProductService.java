@@ -19,4 +19,6 @@ public interface ProductService {
     ResponseDto getProductData(int id);
 
     ResponseDto update(ProductDto productDto);
+
+    List<ProductDto>getActiveProductList();
 }

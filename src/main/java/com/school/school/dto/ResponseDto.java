@@ -22,6 +22,7 @@ public class ResponseDto implements Serializable {
         this.message = message;
     }
 
+
     public ResponseDto(Object data) {
         this.data = data;
     }

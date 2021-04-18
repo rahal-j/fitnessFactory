@@ -76,10 +76,10 @@
                                                 <td><c:out value="${temp.id}"/></td>
                                                 <td><c:out value="${temp.name}"/></td>
                                                 <td align="left">
-                                                    <c:if test="${temp.isExpire ==0 }">
-                                                        <lable class=" label btn-success">Yes</lable>
+                                                    <c:if test="${temp.isExpire ==1 }">
+                                                        <lable class=" label btn-success">yes</lable>
                                                     </c:if>
-                                                    <c:if test="${temp.isExpire ==1}">
+                                                    <c:if test="${temp.isExpire ==0}">
                                                         <lable class=" label btn-danger">No</lable>
                                                     </c:if>
                                                 </td>

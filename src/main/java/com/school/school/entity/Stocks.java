@@ -16,20 +16,13 @@ public class Stocks {
     @Column(name = "batchNo")
     private Integer batchNo;
 
-    @Column(name = "sellingPrice")
-    private Double sellingPrice;
-
-    @Column(name = "buyingPrice")
-    private Double buyingPrice;
-
     @Column(name = "quantity")
     private Integer quantity;
 
     @Column(name = "unit")
     private Integer unit;
 
-    @Column(name = "status")
-    private String status;
+
 
     @Column(name = "dateCreated")
     private Date dateCreated;
@@ -57,22 +50,6 @@ public class Stocks {
         this.batchNo = batchNo;
     }
 
-    public Double getSellingPrice() {
-        return sellingPrice;
-    }
-
-    public void setSellingPrice(Double sellingPrice) {
-        this.sellingPrice = sellingPrice;
-    }
-
-    public Double getBuyingPrice() {
-        return buyingPrice;
-    }
-
-    public void setBuyingPrice(Double buyingPrice) {
-        this.buyingPrice = buyingPrice;
-    }
-
     public Integer getQuantity() {
         return quantity;
     }
@@ -89,13 +66,7 @@ public class Stocks {
         this.unit = unit;
     }
 
-    public String getStatus() {
-        return status;
-    }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public Date getDateCreated() {
         return dateCreated;

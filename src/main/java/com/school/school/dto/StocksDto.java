@@ -7,11 +7,8 @@ public class StocksDto {
 
     private Integer id;
     private Integer batchNo;
-    private Double sellingPrice;
-    private Double buyingPrice;
     private Integer quantity;
     private Integer unit;
-    private String status;
     private Date dateCreated;
     private Integer product;
 
@@ -35,22 +32,6 @@ public class StocksDto {
         this.batchNo = batchNo;
     }
 
-    public Double getSellingPrice() {
-        return sellingPrice;
-    }
-
-    public void setSellingPrice(Double sellingPrice) {
-        this.sellingPrice = sellingPrice;
-    }
-
-    public Double getBuyingPrice() {
-        return buyingPrice;
-    }
-
-    public void setBuyingPrice(Double buyingPrice) {
-        this.buyingPrice = buyingPrice;
-    }
-
     public Integer getQuantity() {
         return quantity;
     }
@@ -67,13 +48,6 @@ public class StocksDto {
         this.unit = unit;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public Date getDateCreated() {
         return dateCreated;

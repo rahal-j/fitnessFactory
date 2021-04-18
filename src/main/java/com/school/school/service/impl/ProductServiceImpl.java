@@ -13,6 +13,7 @@ import com.school.school.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -44,6 +45,8 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> fetchProductList() {
         return productDao.findAll();
     }
+
+
 
     @Override
     public ResponseDto activateProduct(int id) {
@@ -91,6 +94,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
 
+    @Override
+    public List<ProductDto>getActiveProductList(){
+        List<ProductDto> productDtos = new ArrayList<>();
+        List<Product> products = productDao.findAllByStatus("ACTIVE");
+        for (Product product : products){
+            ProductDto productDto = ProductEntityToDtoMapper.getProductDto(new ProductDto(),product);
+            productDtos.add(productDto);
+        }
+        return productDtos;
+    }
 
 
 
