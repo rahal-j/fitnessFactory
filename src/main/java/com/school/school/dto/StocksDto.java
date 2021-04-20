@@ -11,9 +11,18 @@ public class StocksDto {
     private Integer unit;
     private Date dateCreated;
     private Integer product;
+    private Integer isExpire;
 
 
     public StocksDto() {
+    }
+
+    public Integer getIsExpire() {
+        return isExpire;
+    }
+
+    public void setIsExpire(Integer isExpire) {
+        this.isExpire = isExpire;
     }
 
     public Integer getId() {

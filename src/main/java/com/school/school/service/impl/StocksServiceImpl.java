@@ -61,21 +61,22 @@ public class StocksServiceImpl implements StocksService {
 
         Integer batchNo = 1;
         List<Stocks> stockList ;
-        Product prod = productDao.getOne(productId);
+        StocksDto stocksDto = new StocksDto();
 
+        Product prod = productDao.getOne(productId);
+        stocksDto.setIsExpire(prod.getIsExpire());
        stockList = stocksDao.findAllByProduct(prod);
 
         if (stockList == null || stockList.isEmpty()){
-
-
-          return new ResponseDto(batchNo);
+            stocksDto.setBatchNo(batchNo);
+          return new ResponseDto(stocksDto);
 
         }else {
 
             List<Stocks> dataList  = stocksDao.findStocksByProductId(productId);
                   batchNo = dataList.get(0).getBatchNo()+1;
-
-            return new ResponseDto(batchNo);
+                  stocksDto.setBatchNo(batchNo);
+            return new ResponseDto(stocksDto);
 
         }
     }

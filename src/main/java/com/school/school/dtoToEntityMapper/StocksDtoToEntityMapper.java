@@ -10,7 +10,7 @@ public class StocksDtoToEntityMapper {
 
     public static Stocks getStocksEntity(StocksDto stocksDto, Stocks stocks, Product product){
 
-       stocks.setId(stocks.getId() !=null? stocks.getId() : stocksDto.getId() );
+       stocks.setId(stocks.getId()!= 0 ? stocks.getId() : stocksDto.getId() );
         stocks.setBatchNo(stocksDto.getBatchNo());
         stocks.setDateCreated(new Date());
         stocks.setQuantity(stocksDto.getQuantity());
