@@ -11,20 +11,20 @@ public class Stocks {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
-    @Column(name = "batchNo")
-    private Integer batchNo;
+    @Column(name = "batch_no")
+    private int batchNo;
 
     @Column(name = "quantity")
-    private Integer quantity;
+    private int quantity;
 
     @Column(name = "unit")
-    private Integer unit;
+    private int unit;
 
 
 
-    @Column(name = "dateCreated")
+    @Column(name = "date_created")
     private Date dateCreated;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -34,39 +34,38 @@ public class Stocks {
     public Stocks() {
     }
 
-    public Integer getId() {
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getBatchNo() {
+    public int getBatchNo() {
         return batchNo;
     }
 
-    public void setBatchNo(Integer batchNo) {
+    public void setBatchNo(int batchNo) {
         this.batchNo = batchNo;
     }
 
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public Integer getUnit() {
+    public int getUnit() {
         return unit;
     }
 
-    public void setUnit(Integer unit) {
+    public void setUnit(int unit) {
         this.unit = unit;
     }
-
-
 
     public Date getDateCreated() {
         return dateCreated;

@@ -12,6 +12,7 @@ import com.school.school.service.StocksService;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,25 +56,29 @@ public class StocksServiceImpl implements StocksService {
     public List<Stocks> fetchStocks(){return stocksDao.findAll();}
 
     @Override
+    @Transactional
     public ResponseDto getLastStockId(int productId){
 
         Integer batchNo = 1;
-        List<Stocks> stockList = new ArrayList<>();
+        List<Stocks> stockList ;
         Product prod = productDao.getOne(productId);
-        stockList  = stocksDao.findAllByProduct(prod);
 
-        if (stockList == null){
+       stockList = stocksDao.findAllByProduct(prod);
+
+        if (stockList == null || stockList.isEmpty()){
 
 
           return new ResponseDto(batchNo);
 
         }else {
-            Stocks  stocks = stocksDao.findStocksByProductOrderByBatchNoDesc(productId).get(0);
-            batchNo += stocks.getBatchNo();
+
+            List<Stocks> dataList  = stocksDao.findStocksByProductId(productId);
+                  batchNo = dataList.get(0).getBatchNo()+1;
+
             return new ResponseDto(batchNo);
 
         }
-     }
+    }
 
 
 
