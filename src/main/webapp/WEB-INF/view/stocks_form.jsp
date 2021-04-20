@@ -117,7 +117,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2 text-center">
-                                                    <input id="batchNo0" class="form-control"
+                                                    <input id="batch_no0" class="form-control"
                                                            name="batchNo" type="text"
                                                            value="<c:out value="${stocks.batchNo}" />"/>
                                                 </div>
@@ -330,14 +330,22 @@
 
         var id = $("#"+id_).val();
         var index_no = id_.substring(8,10);
-        alert(index_no);
-        $.ajax({
+         $.ajax({
             type : "GET",
             url : "/stocks/getBatchNo?id="+id,
             dataType : "json",
             success : function(data) {
 
-                $('#batch_no'+index_no).val(data.data);
+                $('#batch_no'+index_no).attr('readonly', true);
+                $('#batch_no'+index_no).val(data.data.batchNo);
+                if(data.data.isExpire == 0){
+                    $('#expireDate'+index_no).attr('readonly', true);
+
+                }else{
+                    $('#expireDate'+index_no).attr('readonly', false);
+
+                }
+
 
             }
         });
