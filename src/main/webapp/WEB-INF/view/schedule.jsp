@@ -12,7 +12,8 @@
     <meta content="" name="author"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <%@include file="header_src.jsp" %>
-
+    <link rel="stylesheet" href="../../resources/static/assets/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="../../resources/static/assets/plugins/chosen/chosen.min.css" />
 </head>
 
 <!-- END HEAD -->
@@ -171,13 +172,16 @@
                                         <br />
                                         <div class="row">
 
+                                            <div class="col-md-1 text-center" >
+                                                <strong>Schedule No</strong>
+                                            </div>
                                             <div class="col-md-5 text-center">
                                                 <strong>Exercise</strong>
                                             </div>
                                             <div class="col-md-2 text-center">
                                                 <strong>Sets</strong>
                                             </div>
-                                            <div class="col-md-2 text-center" id="">
+                                            <div class="col-md-2 text-center" >
                                                 <strong>Reps</strong>
                                             </div>
 
@@ -188,11 +192,16 @@
 
                                             <div class="row inv_row" id="inv_row0">
 
+                                                <div class="col-md-1 text-center">
+                                                    <input id="scheduleNo0" class="form-control"
+                                                           name="scheduleNo" type="text"
+                                                           value="<c:out value="${schedule.scheduleNo}" />"/>
+                                                </div>
+
 
                                                 <div class="col-md-5 text-center" style="margin-left: 1%;">
-                                                    <select name="exercise" id="exercise" class="form-control">
+                                                    <select name="exercise" id="exercise0" class="form-control chzn-select exercise keep">
                                                         <option value="<c:out value="${exercise.id}" />">${exercise.name}</option>
-                                                        <%--<option value="${userReg.userRole}">Select User Role</option>--%>
                                                         <c:forEach items="${exercises}" var="temp">
                                                             <option value="<c:out value= "${temp.id}" />">${temp.name}</option>
                                                         </c:forEach>
@@ -201,22 +210,22 @@
                                                 </div>
 
                                                 <div class="col-md-2 text-center">
-                                                    <input id="sets" class="form-control"
+                                                    <input id="sets0" class="form-control"
                                                            name="sets" type="text"
                                                            value="<c:out value="${schedule.sets}" />"/>
                                                 </div>
                                                 <div class="col-md-2 form-group text-center "style="margin-left: 0%;">
-                                                    <input class="form-control child" name="reps" id="reps"
+                                                    <input class="form-control child" name="reps" id="reps0"
                                                            type="text"
                                                            value="<c:out value="${schedule.reps}" />"/>
                                                 </div>
 
-                                                <div class="col-md-1 text-center" style="margin-left: 1.2%;">
-                                                    <button id="remove" class="btn btn-danger  item_remove"
-                                                            type="button">
-                                                        <i class="icon-minus-sign"></i>
-                                                    </button>
-                                                </div>
+                                                <%--<div class="col-md-1 text-center" style="margin-left: 1.2%;">--%>
+                                                    <%--<button id="remove" class="btn btn-danger  item_remove"--%>
+                                                            <%--type="button">--%>
+                                                        <%--<i class="icon-minus-sign"></i>--%>
+                                                    <%--</button>--%>
+                                                <%--</div>--%>
 
                                             </div>
 
@@ -235,6 +244,10 @@
 
                                             <input id="btn_save"
                                                    value="Save" class="btn btn-success btn-md " type="submit">
+                                            <input id="btn_reset" value="Reset"
+                                                   class="btn btn-warning btn-md " type="reset"/> <a
+                                                class="btn btn-danger btn-md"
+                                                href="/schedule/">Cancel</a>
 
                                         </div>
 
@@ -275,58 +288,151 @@
 
 <%@include file="footer_src.jsp" %>
 
+<script src="../../resources/static/assets/plugins/chosen/chosen.jquery.min.js"></script>
+
 
 <script>
+    $(function() {
+        formValidation();
+        noLetter();
+    });
+    $(function() {
+        /*----------- BEGIN chosen CODE -------------------------*/
 
-    var html = '  <div class="row inv_row" id="inv_row0">\n' +
-        '\n' +
-        '\n' +
-        '                                                <div class="col-md-5 text-center" style="margin-left: 1%;">\n' +
-        '                                                    <select name="exercise" id="exercise" class="form-control">\n' +
-        '                                                        <option value="<c:out value="${exercise.id}" />">${exercise.name}</option>\n' +
-        '                                                        <%--<option value="${userReg.userRole}">Select User Role</option>--%>\n' +
-        '                                                        <c:forEach items="${exercises}" var="temp">\n' +
-        '                                                            <option value="<c:out value= "${temp.id}" />">${temp.name}</option>\n' +
-        '                                                        </c:forEach>\n' +
-        '\n' +
-        '                                                    </select>\n' +
-        '                                                </div>\n' +
-        '\n' +
-        '                                                <div class="col-md-2 text-center">\n' +
-        '                                                    <input id="sets" class="form-control"\n' +
-        '                                                           name="sets" type="text"\n' +
-        '                                                           value="<c:out value="${schedule.sets}" />"/>\n' +
-        '                                                </div>\n' +
-        '                                                <div class="col-md-2 form-group text-center "style="margin-left: 0%;">\n' +
-        '                                                    <input class="form-control child" name="reps" id="reps"\n' +
-        '                                                           type="text"\n' +
-        '                                                           value="<c:out value="${schedule.reps}" />"/>\n' +
-        '                                                </div>\n' +
-        '\n' +
-        '                                                <div class="col-md-1 text-center" style="margin-left: 1.2%;">\n' +
-        '                                                    <button id="remove" class="btn btn-danger  item_remove"\n' +
-        '                                                            type="button">\n' +
-        '                                                        <i class="icon-minus-sign"></i>\n' +
-        '                                                    </button>\n' +
-        '                                                </div>\n' +
-        '\n' +
-        '                                            </div>';
+        $(".chzn-select").chosen();
+        $(".chzn-select-deselect").chosen({
+            allow_single_deselect : false
 
-    $(function () {
-        /* $('.inv_body').sortable();*/
+        });
+        /*----------- END chosen CODE -------------------------*/
+    });
+</script>
 
-        $('#add-item').click(function () {
-            $('.inv_body').append(html);
+<script>
+    $(document).ready(function () {
+
+
+        $(".chzn-select").prop('disabled', false).trigger('chosen:updated');
+
+        var index = 1;
+        $('#add-item').click(function(e){
+            e.preventDefault();
+
+            var inv_row = $(' <div class="row inv_row" id="inv_row'+index+'">\n' +
+                '\n' +
+                '\n' +
+                '                                                 <div class="col-md-1 text-center">\n' +
+                '                                                    <input id="scheduleNo'+index+'" class="form-control"\n' +
+                '                                                           name="scheduleNo" type="text"\n' +
+                '                                                           value="<c:out value="${schedule.scheduleNo}" />"/>\n' +
+                '                                                </div>' +
+                '                                                              <div class="col-md-5 text-center" style="margin-left: 1%;">\n' +
+                '                                                    <select name="exercise" id="exercise'+index+'" class="form-control chzn-select exercise keep">\n' +
+                '                                                        <option value="<c:out value="${exercise.id}" />">${exercise.name}</option>\n' +
+                 '                                                        <c:forEach items="${exercises}" var="temp">\n' +
+                '                                                            <option value="<c:out value= "${temp.id}" />">${temp.name}</option>\n' +
+                '                                                        </c:forEach>\n' +
+                '\n' +
+                '                                                    </select>\n' +
+                '                                                </div>\n' +
+                '\n' +
+                '                                                <div class="col-md-2 text-center">\n' +
+                '                                                    <input id="sets'+index+'" class="form-control"\n' +
+                '                                                           name="sets" type="text"\n' +
+                '                                                           value="<c:out value="${schedule.sets}" />"/>\n' +
+                '                                                </div>\n' +
+                '                                                <div class="col-md-2 form-group text-center "style="margin-left: 0%;">\n' +
+                '                                                    <input class="form-control child" name="reps" id="reps'+index+'\n' +
+                '                                                           type="text"\n' +
+                '                                                           value="<c:out value="${schedule.reps}" />"/>\n' +
+                '                                                </div>\n' +
+                '\n' +
+                '                                                <div class="col-md-1 text-center" style="margin-left: 1.2%;">\n' +
+                '                                                    <button id="remove" class="btn btn-danger  item_remove"\n' +
+                '                                                            type="button">\n' +
+                '                                                        <i class="icon-minus-sign"></i>\n' +
+                '                                                    </button>\n' +
+                '                                                </div>\n' +
+                '\n' +
+                '                                            </div>');
+            $(".inv_body").append(inv_row);
+
+
+
+
+
+            $.ajax({
+                type : "GET",
+                url : "/schedule/exerciseList",
+                dataType : "json",
+                beforeSend : function(xhr) {
+                    $("#exercise"+ index).empty();
+                },
+                success : function(data) {
+                    var div_data = "<option></option>";
+                    $(div_data).appendTo("#exercise"+index);
+                    $.each(data.data, function(i, obj) {
+                        div_data = "<option value=" + obj.id + ">"
+                            + obj.name + "</option>";
+                        $(div_data).appendTo("#exercise"+index);
+                    });
+                    $("#exercise"+index).chosen().trigger("chosen:updated");
+                    index++;
+                }
+            });
 
         });
 
-        $('.inv_body').on('click', '#remove', function() {
-            this.closest(".inv_row").remove();
 
-        });
+    });
+
+    $('.inv_body').on('click', '#remove', function() {
+        this.closest(".inv_row").remove();
+
+    });
+
+    function getFormDataAsDTO(formId) {
+        var formElement = $('form#' + formId);
+        var formData = new Object();
+        /*  var formDataArray = formElement.serializeArray();
+          $.each(formDataArray, function (i, obj) {
+              formData[obj.name] = obj.value;
+
+          })*/
 
 
-    })
+        var count = Number($("[id^='inv_row']").last().attr('id').replace("inv_row", ""));
+        var exercises =[];
+        var setsList =[];
+        var repsList =[];
+        var scheduleNos =[];
+        var i;
+        for (i = 0; i <= count; i++) {
+            exercises[i] = $("#exercise"+i).val();
+            setsList[i]= $("#sets"+i).val();
+            repsList [i]=$("#reps"+i).val();
+            scheduleNos [i]=$("#scheduleNo"+i).val();
+
+
+        }
+        formData['exercises']= exercises;
+        formData['setsList']= setsList;
+        formData['repsList']= repsList;
+        formData['scheduleNos']= scheduleNos;
+        return JSON.stringify(formData);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </script>
@@ -336,15 +442,15 @@
         $(function() {
             formValidation();
         });
-        $("#stocksForm").submit(
+        $("#scheduleForm").submit(
             function (e) {
                 e.preventDefault();
-                if (!$("#stocksForm").valid())
+                if (!$("#scheduleForm").valid())
                     return false;
-                var formData = getFormDataAsDTO("stocksForm");
+                var formData = getFormDataAsDTO("scheduleForm");
                 $.ajax({
                     type: "POST",
-                    url: "/stocks/save",
+                    url: "/schedule/save",
                     dataType: 'json',
                     contentType: 'application/json',
                     data: formData,
@@ -361,7 +467,7 @@
                                     closeOnConfirm: false
                                 },
                                 function () {
-                                    window.location = "/stocks/";
+                                    window.location = "/schedule/";
                                 });
                         } else {
                             swal(

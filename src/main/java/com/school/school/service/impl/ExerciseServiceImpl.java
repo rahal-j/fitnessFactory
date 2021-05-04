@@ -16,6 +16,7 @@ import com.school.school.service.ExerciseServise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -102,6 +103,19 @@ public class ExerciseServiceImpl  implements ExerciseServise {
 
 
 
+    @Override
+    public List<ExerciseDto> getActiveExerciseList(){
+        List<ExerciseDto> exerciseDtos = new ArrayList<>();
+        List<Exercise> exercises = exerciseDao.findAllByStatus("ACTIVE");
+        for (Exercise exercise : exercises){
+            ExerciseDto exerciseDto = ExerciseEntityToDtoMapper.getExerciseDto(new ExerciseDto(), exercise);
+            exerciseDtos.add(exerciseDto);
+
+
+        }
+        return exerciseDtos;
+
+    }
 
 
 

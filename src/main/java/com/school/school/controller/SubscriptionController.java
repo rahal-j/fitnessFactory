@@ -20,12 +20,12 @@ public class SubscriptionController {
     @RequestMapping("/")
     public String addSubscription(Model model) {
         model.addAttribute("subscription", subscriptionService.fetchSubscription());
-        return "login";
+        return "ghgh";
     }
 
 
     @GetMapping("/insertPage")
-    public String getInsertPage(){return "schedule";}
+    public String getInsertPage(){return "dashboard";}
 
 
     @PostMapping("/save")

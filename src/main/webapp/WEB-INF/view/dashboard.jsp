@@ -34,7 +34,7 @@
         <div class="inner" style="min-height: 700px;">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 style="color: #8a7d7d"> Class Management </h1>
+                    <h1 style="color: #8a7d7d"> Gym Management </h1>
                 </div>
             </div>
             <hr />
@@ -42,35 +42,34 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div style="text-align: center;">
-                        <% if (currentUser.getUserRole().getName().equals("ADMIN")) {%>
 
-                        <a class="quick-btn" href="/regUser/insertPage">
+                        <a class="quick-btn" href="/member/insertPage">
                             <i class="icon-edit-sign icon-4x"></i>
-                            <span style="font-size: medium">User Register</span>
+                            <span style="font-size: medium">Member Register</span>
                         </a>
-                        <a class="quick-btn" href="/class/insertPage">
+                        <a class="quick-btn" href="/payment/insertPage">
                             <i class="icon-th icon-4x"></i>
-                            <span style="font-size: medium">Class</span>
+                            <span style="font-size: medium">Payment</span>
                         </a>
-                        <a class="quick-btn" href="/course/insertPage">
+                        <a class="quick-btn" href="/subscription/insertPage">
                             <i class="icon-list-alt icon-4x"></i>
-                            <span style="font-size: medium">Course</span>
+                            <span style="font-size: medium">Subscription</span>
                         </a>
                         <br/>
-                        <a class="quick-btn" href="/userCourse/insertPage">
+                        <a class="quick-btn" href="/schedule/insertPage">
                             <i class="icon-folder-open-alt icon-4x"></i>
-                            <span style="font-size: medium">Course Assign</span>
+                            <span style="font-size: medium">Schedule</span>
                         </a>
-                        <a class="quick-btn" href="/subject/insertPage">
+                        <a class="quick-btn" href="/stocks/insertPage">
                             <i class="icon-align-justify icon-4x"></i>
-                            <span style="font-size: medium">Subject</span>
+                            <span style="font-size: medium">Stocks</span>
                         </a>
-                        <a class="quick-btn" href="/roomSchedule/insertPage">
+                        <a class="quick-btn" href="/userRole/insertPage">
                             <i class="icon-calendar-empty icon-4x"></i>
-                            <span style="font-size: medium">Schedule Class</span>
+                            <span style="font-size: medium">User Role</span>
                         </a>
 
-                        <%      } else if (currentUser.getUserRole().getName().equals("SUPERVISOR")){ %>
+         <%--               <%      } else if (currentUser.getUserRole().getName().equals("SUPERVISOR")){ %>
 
                         <a class="quick-btn" href="/regUser/insertPage">
                             <i class="icon-edit-sign icon-4x"></i>
@@ -106,7 +105,7 @@
                         </a>
 
                         <%      } %>
-
+--%>
                     </div>
                 </div>
             </div>

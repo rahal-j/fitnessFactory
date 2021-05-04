@@ -1,8 +1,10 @@
 package com.school.school.dto;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-public class ScheduleDto {
+public class ScheduleDto implements Serializable {
 
     private Integer id;
     private String name;
@@ -16,9 +18,58 @@ public class ScheduleDto {
     private String lastName;
     private String Title;
     private String email;
+    private Integer scheduleNo;
+
+
+    private List<String> exercises;
+    private List<String> setsLIst;
+    private List<String> repsList;
+    private List<String> scheduleNos;
+
+
 
 
     public ScheduleDto() {
+    }
+
+    public List<String> getExercises() {
+        return exercises;
+    }
+
+    public void setExercises(List<String> exercises) {
+        this.exercises = exercises;
+    }
+
+    public List<String> getSetsLIst() {
+        return setsLIst;
+    }
+
+    public void setSetsLIst(List<String> setsLIst) {
+        this.setsLIst = setsLIst;
+    }
+
+    public List<String> getRepsList() {
+        return repsList;
+    }
+
+    public void setRepsList(List<String> repsList) {
+        this.repsList = repsList;
+    }
+
+    public List<String> getScheduleNos() {
+        return scheduleNos;
+    }
+
+    public void setScheduleNos(List<String> scheduleNos) {
+        this.scheduleNos = scheduleNos;
+    }
+
+    public Integer getScheduleNo() {
+        return scheduleNo;
+    }
+
+    public void setScheduleNo(Integer scheduleNo) {
+        this.scheduleNo = scheduleNo;
     }
 
     public String getMemberStatus() {

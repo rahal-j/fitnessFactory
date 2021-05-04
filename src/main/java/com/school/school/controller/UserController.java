@@ -1,13 +1,14 @@
 package com.school.school.controller;
 
+import com.school.school.dto.ResponseDto;
+import com.school.school.dto.UserDto;
 import com.school.school.dto.UserRoleDto;
 import com.school.school.service.UserRoleService;
 import com.school.school.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,22 +25,26 @@ public class UserController {
 
     @RequestMapping("/")
     public String addUser(Model model){
-        model.addAttribute("user", userService.fetchUser());
+        model.addAttribute("users", userService.fetchUser());
         return "user_list";
     }
 
 
-    @GetMapping("insertPage")
+    @GetMapping("/insertPage")
     public String addPage(Model model){
         List<UserRoleDto> userRolesDtos = userRoleService.getActiveUserRoleList();
         model.addAttribute("userRoles",userRolesDtos);
         return "user_form";
 
-
-
-
-
     }
+
+    @PostMapping("/save")
+    @ResponseBody
+    public ResponseDto saveMember(@RequestBody UserDto userDto){
+        return userService.addUser(userDto);
+    }
+
+
 
 
 

@@ -21,24 +21,31 @@ private String name;
     @Column(name = "reps")
     private int reps;
 
-    @Column(name = "member_id")
-    private Integer memberId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member memberId;
 
-    @Column(name = "exercise_id")
-private Integer exerciseId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "exercise_id")
+private Exercise exerciseId;
 
     @Column(name = "date")
     private Date date;
 
+    @Column(name = "schedule_no")
+    private Integer scheduleNo;
+
+
     public Schedule() {
     }
 
-    public int getMemberId() {
-        return memberId;
+
+    public Integer getScheduleNo() {
+        return scheduleNo;
     }
 
-    public void setMemberId(int memberId) {
-        this.memberId = memberId;
+    public void setScheduleNo(Integer scheduleNo) {
+        this.scheduleNo = scheduleNo;
     }
 
     public int getSets() {
@@ -81,11 +88,19 @@ private Integer exerciseId;
         this.name = name;
     }
 
-    public Integer getExerciseId() {
+    public Member getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(Member memberId) {
+        this.memberId = memberId;
+    }
+
+    public Exercise getExerciseId() {
         return exerciseId;
     }
 
-    public void setExerciseId(Integer exerciseId) {
+    public void setExerciseId(Exercise exerciseId) {
         this.exerciseId = exerciseId;
     }
 }

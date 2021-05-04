@@ -24,8 +24,29 @@ public class Product {
     @Column(name = "date_created")
     private Date dateCreated;
 
+    @Column(name = "buying_price")
+    private Double buyingPrice;
+
+    @Column(name = "selling_price")
+    private Double sellingPrice;
 
     public Product() {
+    }
+
+    public Double getBuyingPrice() {
+        return buyingPrice;
+    }
+
+    public void setBuyingPrice(Double buyingPrice) {
+        this.buyingPrice = buyingPrice;
+    }
+
+    public Double getSellingPrice() {
+        return sellingPrice;
+    }
+
+    public void setSellingPrice(Double sellingPrice) {
+        this.sellingPrice = sellingPrice;
     }
 
     public Integer getId() {

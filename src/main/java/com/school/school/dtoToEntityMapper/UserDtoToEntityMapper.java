@@ -17,10 +17,10 @@ public class UserDtoToEntityMapper {
         user.setStatus(TransactionStatus.ACTIVE.getCode());
         user.setDob(userDto.getDob());
         user.setGender(userDto.getGender());
-        user.setContactNumber(userDto.getContactNo());
+        user.setContactNo(userDto.getContactNo());
         user.setNic(userDto.getNic());
         user.setTitle(userDto.getTitle());
-        user.setUserName(userDto.getUsername());
+        user.setUserName(userDto.getUserName());
         user.setPassWord(userDto.getPassword());
         user.setUserRole(userRole);
 

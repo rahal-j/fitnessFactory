@@ -10,4 +10,10 @@ public interface UserService {
     ResponseDto addUser(UserDto userDto);
 
     List<User> fetchUser();
+
+
+
+    ResponseDto deactivate(int id);
+
+    ResponseDto activate(int id);
 }

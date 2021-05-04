@@ -103,7 +103,7 @@
                                                style="float: right;">Title</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <select name="title" id="title" class="form-control">
+                                        <select name="title" id="title" class="form-control"  readonly="readonly">
                                             <option value="">Select Title</option>
                                             <option value="0" >Mr</option>
                                             <option value="1" >Mrs</option>
@@ -123,7 +123,7 @@
                                                style="float: right;">First Name</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" id="firstName" name="firstName"
+                                        <input type="text" id="firstName" name="firstName"  readonly="readonly"
                                                placeholder="Enter First Name" class="form-control"
                                                value=""/>
                                     </div>
@@ -137,7 +137,7 @@
                                                style="float: right;">Last Name</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" id="lastName" name="lastName"
+                                        <input type="text" id="lastName" name="lastName"  readonly="readonly"
                                                placeholder="Enter Last Name" class="form-control"
                                                value=""/>
                                     </div>
@@ -151,7 +151,7 @@
                                                style="float: right;">Email</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="email" id="email" name="email"
+                                        <input type="email" id="email" name="email"  readonly="readonly"
                                                placeholder="Enter Email" class="form-control"
                                                value=""/>
                                     </div>
@@ -367,17 +367,24 @@
         return JSON.stringify(formData);
     }
 </script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.standalone.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js">
+</script>
+
 <script>
-    $('.date').datepicker({
-        endDate: '-16y',
+
+    $('#sandbox-container .input-group.date').datepicker({
+
+        format: 'dd/mm/yyyy',
         startView: 1,
         clearBtn: true,
         calendarWeeks: true,
         autoclose: true,
-        format: 'yyyy-mm-dd',
         todayHighlight: true
     });
-
 
 </script>
 <script>

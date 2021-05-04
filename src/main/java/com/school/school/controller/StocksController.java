@@ -3,6 +3,7 @@ package com.school.school.controller;
 import com.school.school.dto.ProductDto;
 import com.school.school.dto.ResponseDto;
 import com.school.school.dto.StocksDto;
+import com.school.school.dto.StocksProductDto;
 import com.school.school.entity.Stocks;
 import com.school.school.service.ProductService;
 import com.school.school.service.StocksService;
@@ -40,8 +41,9 @@ public class StocksController {
 
     @PostMapping("/save")
     @ResponseBody
-    public ResponseDto saveStocks(@RequestBody StocksDto stocksDto){
-        return stocksService.addStock(stocksDto);
+    public ResponseDto saveStocks(@RequestBody StocksProductDto stocksProductDto){
+        return stocksService.saveStocksArray(stocksProductDto);
+
     }
 
     @GetMapping("/productList")
@@ -50,6 +52,8 @@ public class StocksController {
         ResponseDto responseDto = new ResponseDto();
         responseDto.setData(productService.getActiveProductList());
         return responseDto;
+
+
 
     }
 

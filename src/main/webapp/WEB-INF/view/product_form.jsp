@@ -108,6 +108,32 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label class="control-label col-md-5"
+                                               style="float: right;">Buying Price</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" id="buyingPrice" name="buyingPrice"
+                                               placeholder="Enter Buying Price" class="form-control"
+                                               value="<c:out value="${product.buyingPrice}" />"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label class="control-label col-md-5"
+                                               style="float: right;">Selling Price</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" id="sellingPrice" name="sellingPrice"
+                                               placeholder="Enter selling Price" class="form-control"
+                                               value="<c:out value="${product.sellingPrice}" />"/>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="row">
                                 <div class="form-group">

@@ -22,6 +22,8 @@ public class Stocks {
     @Column(name = "unit")
     private int unit;
 
+    @Column(name = "expireDate")
+    private Date expireDate;
 
 
     @Column(name = "date_created")
@@ -34,6 +36,13 @@ public class Stocks {
     public Stocks() {
     }
 
+    public Date getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(Date expireDate) {
+        this.expireDate = expireDate;
+    }
 
     public int getId() {
         return id;

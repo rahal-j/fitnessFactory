@@ -13,9 +13,9 @@ public class UserEntityToDtoMapper {
         userDto.setEmail(user.getEmail());
         userDto.setStatus(user.getStatus());
         userDto.setDob(user.getDob());
-        userDto.setContactNo(user.getContactNumber());
+        userDto.setContactNo(user.getContactNo());
         userDto.setNic(user.getNic());
-        userDto.setUsername(user.getUserName());
+        userDto.setUserName(user.getUserName());
         userDto.setPassword(user.getPassWord());
         userDto.setAddress(user.getAddress());
         userDto.setTitle(user.getTitle());

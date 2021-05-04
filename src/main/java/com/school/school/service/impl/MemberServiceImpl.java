@@ -3,6 +3,7 @@ package com.school.school.service.impl;
 
 import com.school.school.dto.MemberDto;
 import com.school.school.dto.ResponseDto;
+import com.school.school.dto.UserDto;
 import com.school.school.dtoToEntityMapper.MemberDtoToEntityMapper;
 import com.school.school.entity.Member;
 import com.school.school.entity.Subscription;
@@ -18,6 +19,8 @@ import com.school.school.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -94,9 +97,15 @@ public class MemberServiceImpl implements MemberService {
 
         Member member = new Member();
         member = memberDao.getOne(id);
+        UserDto userDto = new UserDto();
+        Date date1 ;
+       /* date1= new SimpleDateFormat("dd/MM/yyyy").parse(date1));
+        userDto.setDob(date1);*/
 /*
         Subscription subscription = new Subscription();
         subscription = subscriptionDao.getOne(id);*/
+
+
 
 
 

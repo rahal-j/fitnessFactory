@@ -79,8 +79,8 @@
                                                style="float: right;">Name</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" id="name" name="name" style="text-transform:uppercase"
-                                               placeholder="Enter Class Name" class="form-control"
+                                        <input type="text" id="name" name="name"
+                                               placeholder="Enter Role Name" class="form-control"
                                                value="<c:out value="${userRole.name}" />"/>
                                     </div>
                                 </div>

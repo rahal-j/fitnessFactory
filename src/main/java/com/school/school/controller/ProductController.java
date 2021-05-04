@@ -24,7 +24,7 @@ public class ProductController {
 
     @GetMapping("/insertPage")
     public String getInsertPage() {
-        return "stocks_form";
+        return "product_form";
     }
 
 

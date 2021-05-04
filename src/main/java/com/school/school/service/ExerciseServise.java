@@ -20,4 +20,6 @@ public interface ExerciseServise {
     ResponseDto getExerciseData(int id);
 
     ResponseDto update(ExerciseDto exerciseDto);
+
+    List<ExerciseDto> getActiveExerciseList();
 }

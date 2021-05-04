@@ -2,6 +2,7 @@ package com.school.school.service;
 
 import com.school.school.dto.ResponseDto;
 import com.school.school.dto.StocksDto;
+import com.school.school.dto.StocksProductDto;
 import com.school.school.entity.Stocks;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface StocksService {
     List<Stocks> fetchStocks();
 
     ResponseDto getLastStockId(int productId);
+
+    ResponseDto saveStocksArray(StocksProductDto stocksProductDto);
 }

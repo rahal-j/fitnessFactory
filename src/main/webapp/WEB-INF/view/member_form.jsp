@@ -183,13 +183,12 @@
                                     <div class="col-md-4">
                                         <div id="sandbox-container">
                                             <div class="input-group date">
-                                                <input type="text" id="dob" name="dob" class="form-control"
+                                                <input type="text"  placeholder="YYYY-MM-DD" id="dob" name="dob" class="form-control"
                                                        value="<c:out value="${member.dob}" />"><span
                                                     class="input-group-addon"><i
                                                     class="glyphicon glyphicon-th"></i></span>
                                             </div>
                                         </div>
-s
                                     </div>
                                 </div>
                             </div>
@@ -360,6 +359,7 @@ s
     $('#sandbox-container .input-group.date').datepicker({
 
         endDate: "-16y",
+        format: 'yyyy-mm-dd',
         startView: 1,
         clearBtn: true,
         calendarWeeks: true,

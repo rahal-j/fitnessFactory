@@ -42,7 +42,7 @@
         <div class="inner" style="min-height: 700px;">
             <ul class="breadcrumb" style="margin-top:2%;">
                 <li><a href="/home">Home</a></li>
-                <li><a href="/subscription/insertPage">Add Stocks</a></li>
+                <li><a href="/stocks/insertPage">Add Stocks</a></li>
             </ul>
             <div class="row">
 
@@ -57,20 +57,20 @@
                         </header>
 
 
-                        <form id="stockForm" class="form-horizontal" align="center"
+                        <form id="stocksForm" class="form-horizontal" align="center"
                               novalidate>
 
                             <div class="row page">
                                 <div class="col-lg-12">
                                     <div class="box dark staticParent">
 
-                                        <div class="row">
-                                            <div class="col-md-1 text-center">
-	<span style="font-size:154px; font-family: Calibri; color:#455862; border-color:#DCFFFF; background-color:#DCFFFF;"><input
-            readonly id="series_id" class="form-control hidden"
-            name="series_id" value="${series_id}" id="inv_price0"
-            type="text"/></span></div>
-                                        </div>
+                                        <%--<div class="row">--%>
+                                            <%--<div class="col-md-1 text-center">--%>
+	<%--<span style="font-size:154px; font-family: Calibri; color:#455862; border-color:#DCFFFF; background-color:#DCFFFF;"><input--%>
+            <%--readonly id="series_id" class="form-control hidden"--%>
+            <%--name="series_id" value="${series_id}" id="inv_price0"--%>
+            <%--type="text"/></span></div>--%>
+                                        <%--</div>--%>
                                         <br/>
                                         <div class="row">
                                             <div class="col-md-4 text-center">
@@ -106,10 +106,10 @@
                                                 <div class="col-md-2 text-center">
                                                     <div id="sandbox-container">
                                                         <div class="input-group date">
-                                                            <input type="text" placeholder="YYYY-MM-DD"
+                                                            <input type="text"
                                                                    name="expireDate"
                                                                    id="expireDate0"
-                                                                   class="all form-control my_date"><span
+                                                                   class="form-control"><span
                                                                 class="input-group-addon"><li
                                                                 class="glyphicon glyphicon-th"></li></span>
                                                         </div>
@@ -154,8 +154,7 @@
                                                 <div class="col-sm-5">
                                                     <div>
                                                         <input id="btn_save"
-                                                               value="Save" class="btn btn-success btn-md "
-                                                               type="submit">
+                                                               value="Save" class="btn btn-success btn-md " type="submit" >
                                                         <input id="btn_reset" value="Reset"
                                                                class="btn btn-warning btn-md " type="reset"/> <a
                                                             class="btn btn-danger btn-md"
@@ -196,6 +195,27 @@
 <!--END FOOTER -->
 
 <%@include file="footer_src.jsp" %>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.standalone.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js">
+</script>
+
+<script>
+
+    $('#sandbox-container .input-group.date').datepicker({
+
+        format: 'dd/mm/yyyy',
+        startView: 1,
+        clearBtn: true,
+        calendarWeeks: true,
+        autoclose: true,
+        todayHighlight: true
+    });
+
+</script>
+
 <script src="../../resources/static/assets/plugins/chosen/chosen.jquery.min.js"></script>
 
 
@@ -244,25 +264,25 @@
 
             var inv_row = $('<div class="row inv_row" id="inv_row'+index+'">'
                 +'<div class="col-md-4 text-center" style="margin-left: 1%;">'
-                + '<select id="inv_item'+index+'" name="inv_item"'
+                + '<select id="inv_item'+index+'" name="product"'
                 +	'class="form-control chzn-select inv_item keep"onchange="getbatch(this)">'
                 +'</select>'
                 +'</div>'
                 +'<div class="col-md-2 text-center">'
                 +	'<div id="sandbox-container">'
                 +	'<div class="input-group date">'
-                +		'<input type="text" placeholder="YYYY-MM-DD" name="dob"'
-                +			'id="dob'+index+'" class="all form-control my_date"><span class="input-group-addon"><li class= "glyphicon glyphicon-th"></li></span>'
+                +		'<input type="text" placeholder="YYYY-MM-DD" name="expireDate"'
+                +			'id="expireDate'+index+'" class="all form-control my_date"><span class="input-group-addon"><li class= "glyphicon glyphicon-th"></li></span>'
                 +'	</div>'
-                +	'<label for="dob" class="error"></label>'
+                +	'<label for="expireDate" class="error"></label>'
                 +'</div>'
                 +'</div>'
                 +'<div class="col-md-2 text-center">'
                 +'<input readonly id="batch_no'+index+'" class="form-control"'
-                +'name="batch_no" type="text" />'
+                +'name="batchNo" type="text" />'
                 +'</div>'
                 +'<div class="col-md-1 text-center ">'
-                +'<input class="form-control child" name="qty" id="qty'+index+'"'
+                +'<input class="form-control child" name="quantity" id="quantity'+index+'"'
                 +'type="text" />'
                 +'</div>'
                 +'<div class="col-md-1 text-center">'
@@ -275,17 +295,6 @@
                 +'</div>');
             $(".inv_body").append(inv_row);
 
-            /* 	add date picker  */
-            $('#sandbox-container .input-group .date ').datepicker({
-                format : "yyyy-mm-dd",
-                weekStart : 1,
-                todayBtn : false,
-                clearBtn : true,
-                forceParse : false,
-                autoclose : true,
-                todayHighlight : false,
-                startDate : 'today'
-            });
 
 
 
@@ -309,6 +318,7 @@
                     index++;
                 }
             });
+
         });
 
 
@@ -318,6 +328,55 @@
         this.closest(".inv_row").remove();
 
     });
+
+    function getFormDataAsDTO(formId) {
+        var formElement = $('form#' + formId);
+        var formData = new Object();
+      /*  var formDataArray = formElement.serializeArray();
+        $.each(formDataArray, function (i, obj) {
+            formData[obj.name] = obj.value;
+
+        })*/
+
+
+        var count = Number($("[id^='inv_row']").last().attr('id').replace("inv_row", ""));
+        var products =[];
+        var quantities=[];
+        var expiredates=[];
+        var batchNos=[];
+        var datesCreated=[];
+        var i;
+        for (i = 0; i <= count; i++) {
+            products[i] = $("#inv_item"+i).val();
+            quantities[i]= $("#quantity"+i).val();
+            batchNos [i]=$("#batch_no"+i).val();
+            datesCreated [i]=$("#dateCreated"+i).val();
+            if($("#expireDate"+i).val() == undefined || $("#expireDate"+i).val() == ""){
+                expiredates[i] = "" ;
+            }else{
+                expiredates[i]=$("#expireDate"+i).val();
+            }
+
+        }
+        formData['products']= products;
+        formData['quantities']= quantities;
+        formData['expiredates']= expiredates;
+        formData['batchNos']= batchNos;
+        formData['datesCreated']= batchNos;
+        return JSON.stringify(formData);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </script>
@@ -402,7 +461,7 @@
     });
 
 
-    function getFormDataAsDTO(formId) {
+ /*   function getFormDataAsDTO(formId) {
         var formElement = $('form#' + formId);
         var formData = new Object();
         var formDataArray = formElement.serializeArray();
@@ -410,7 +469,7 @@
             formData[obj.name] = obj.value;
         });
         return JSON.stringify(formData);
-    }
+    }*/
 </script>
 </body>
 

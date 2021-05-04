@@ -15,9 +15,19 @@ public interface StocksDao extends JpaRepository<Stocks,Integer> {
 
     List<Stocks> findAllByProduct(Product product);
 
-    @Query(value = "SELECT * FROM stocks WHERE product=?1 order by batch_no desc ;", nativeQuery =
-            true)
-    List<Stocks> findStocksByProductId(int productId);
+
+
+
+
+    @Query(value = "SELECT * FROM stocks WHERE product=?1 order by batch_no desc ", nativeQuery = true)
+    List<Stocks>findStocksByProductId(int productId);
+
+
+
+    Stocks findByProduct(int product);
+
+
+
 
 
 }

@@ -1,8 +1,11 @@
 package com.school.school.dto;
 
+import com.school.school.entity.Product;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class StocksDto {
+public class StocksDto implements Serializable {
 
 
     private Integer id;
@@ -12,9 +15,18 @@ public class StocksDto {
     private Date dateCreated;
     private Integer product;
     private Integer isExpire;
+    private Date expireDate;
 
 
     public StocksDto() {
+    }
+
+    public Date getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(Date expireDate) {
+        this.expireDate = expireDate;
     }
 
     public Integer getIsExpire() {
@@ -72,5 +84,8 @@ public class StocksDto {
 
     public void setProduct(Integer product) {
         this.product = product;
+    }
+
+    public void setProduct(Product product) {
     }
 }

@@ -1,4 +1,4 @@
-﻿function formValidation() {
+﻿﻿function formValidation() {
     "use strict";
     $(document).ready(function () {
 
@@ -271,6 +271,11 @@
                     name_validation: true,
                     no_space: false
                 },
+                title: {
+                    required: true,
+                    name_validation: true,
+                    no_space: false
+                },
                 email: {
                     required: true,
                     email: true,
@@ -328,6 +333,146 @@
                     required: true,
                     minlength: 5,
                     equalTo: "#password2"
+                },
+                agree2: "required",
+                digits: {
+                    required: true,
+                    digits: true
+                },
+                range: {
+                    required: true,
+                    range: [5, 16]
+                }
+            },
+            messages: {
+
+                first_name: {
+                    required: "Please fill this field",
+                    name_validation: "Please insert only alphabetic characters",
+                    //	no_space:"No Spaces please"
+
+                },
+                last_name: {
+                    required: "Please fill this field",
+                    name_validation: "Please insert only alphabetic characters",
+                    //  no_space:"No Spaces please"
+                },
+                email: {
+                    required: "Please fill this field",
+                    email: "Enter a valid e-mail",
+                    // no_space:"No Spaces please"
+                },
+                nic: {
+                    nic: "Please insert valid NIC format",
+                    required: "Please fill this field",
+                    //  no_space:"No Spaces please"
+
+                },
+                mobile_number: {
+
+                    phone_number: "Please insert valid Phone number",
+                    //  	no_space:"No Spaces please",
+                    required: "Please fill this field",
+                    minlength: "min length is 10",
+                    maxlength: "max length is 10"
+                },
+
+                address: {
+                    required: "Enter your address"
+
+                },
+
+
+            },
+            errorClass: 'help-block',
+            errorElement: 'span',
+            highlight: function (element, errorClass, validClass) {
+                $(element).parents('.form-group').removeClass('has-success').addClass('has-error');
+                $(element).parents('.input-group-addon').removeClass('has-success').addClass('has-error');
+
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).parents('.form-group').removeClass('has-error').addClass('has-success');
+            }
+        });
+        $('#userForm').validate({
+
+            rules: {
+                /*
+                             this is product form validation */
+                desc: "required",
+                firstName: {
+                    required: true,
+                    name_validation: true,
+                    no_space: false
+                },
+
+                lastName: {
+                    required: true,
+                    name_validation: true,
+                    no_space: false
+                },
+                title: {
+                    required: true,
+                    name_validation: true,
+                    no_space: false
+                },
+                email: {
+                    required: true,
+                    email: true,
+                    no_space: false
+                },
+                nic: {
+                    required: true,
+                    nic: true,
+                    no_space: false
+                },
+                contactNo: {
+                    phone_number: true,
+                    no_space: false,
+                    required: true,
+                    minlength: 10,
+                    maxlength: 10
+                },
+                emergencyNo: {
+                    phone_number: true,
+                    no_space: false,
+                    required: true,
+                    minlength: 10
+                },
+
+                address: {
+                    required: true,
+
+                },
+                gender: {
+                    required: true,
+
+                },
+
+                status: {
+                    required: true,
+
+                },
+                userRole: {
+                    required: true,
+
+                },
+                dob: {
+                    required: true,
+
+                },
+                password: {
+                    required: true,
+
+                },
+                userName: {
+                    required: true,
+
+                },
+                confirmPassword: {
+                    required: true,
+                    equalTo: "#password"
                 },
                 agree2: "required",
                 digits: {
@@ -634,19 +779,22 @@
         });
 
 
-        $('#courseForm').validate({
+        $('#paymentForm').validate({
 
             rules: {
                 name: "required",
                 status: {
                     required: true
                 },
-                startDate: {
+                amount: {
                     required: true
                 },
-                endDate: {
+                createdUserName: {
                     required: true
                 },
+                subscriptionDate: {
+                    required: true
+                }
             },
             messages: {
 

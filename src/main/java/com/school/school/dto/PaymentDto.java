@@ -71,7 +71,7 @@ public class PaymentDto {
         this.id = id;
     }
 
-    public Integer getSubscriptionId() {
+    public Integer  getSubscriptionId() {
         return subscriptionId;
     }
 

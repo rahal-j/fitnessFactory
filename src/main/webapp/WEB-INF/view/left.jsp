@@ -156,15 +156,13 @@
             <ul class="collapse" id="component-nav">
 
                 <li class=""><a href="/member/"><i class="icon-angle-right"></i> Add Member</a></li>
-                <li class=""><a href="/exercise/"><i class="icon-angle-right"></i> Add Exercise </a></li>
                 <li class=""><a href="/payment/"><i class="icon-angle-right"></i> Add Payment </a></li>
+                <li class=""><a href="/exercise/"><i class="icon-angle-right"></i> Add Exercise </a></li>
                 <li class=""><a href="/schedule/"><i class="icon-angle-right"></i> Add Schedule </a></li>
-                <li class=""><a href="/memberSchedule/"><i class="icon-angle-right"></i> Add Member Schedule </a></li>
                 <li class=""><a href="/product/"><i class="icon-angle-right"></i> Add Product </a></li>
                 <li class=""><a href="/subscription/"><i class="icon-angle-right"></i> Add Subscription </a></li>
                 <li class=""><a href="/userRole/"><i class="icon-angle-right"></i> Add User Role </a></li>
-                <li class=""><a href="/stock/"><i class="icon-angle-right"></i> Add Stock </a></li>
-                <li class=""><a href="typography.html"><i class="icon-angle-right"></i> Typography </a></li>
+                <li class=""><a href="/stocks/"><i class="icon-angle-right"></i> Add Stocks </a></li>
             </ul>
         </li>
 

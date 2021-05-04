@@ -60,7 +60,7 @@
 
 
 
-                        <form id="memberForm" class="form-horizontal" align="center"
+                        <form id="userForm" class="form-horizontal" align="center"
                               novalidate>
 
 
@@ -269,8 +269,21 @@
                                                style="float: right;">Password</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" id="password" name="password"
+                                        <input type="password" id="password" name="password"
                                                placeholder="Enter password" class="form-control"
+                                               value="<c:out value="${user.password}" />"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label class="control-label col-md-5"
+                                               style="float: right;">Confirm Password</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="password" id="confirmPassword" name="password"
+                                               placeholder="Enter Password Again" class="form-control"
                                                value="<c:out value="${user.password}" />"/>
                                     </div>
                                 </div>
@@ -318,22 +331,32 @@
 <!--END FOOTER -->
 
 <%@include file="footer_src.jsp" %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+
+<%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>--%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.standalone.css">
+<!-- Bootstrap -->
+<%--<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
+<!-- Main jQuery -->
+<%--<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>--%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js">
+</script>
+
 
 <script type="text/javascript">
     $(document).ready(function () {
         $(function() {
             formValidation();
         });
-        $("#memberForm").submit(
+        $("#userForm").submit(
             function (e) {
                 e.preventDefault();
-                if (!$("#memberForm").valid())
+                if (!$("#userForm").valid())
                     return false;
-                var formData = getFormDataAsDTO("memberForm");
+                var formData = getFormDataAsDTO("userForm");
                 $.ajax({
                     type: "POST",
-                    url: "/member/save",
+                    url: "/user/save",
                     dataType: 'json',
                     contentType: 'application/json',
                     data: formData,
@@ -350,7 +373,7 @@
                                     closeOnConfirm: false
                                 },
                                 function () {
-                                    window.location = "/member/";
+                                    window.location = "/user/";
                                 });
                         } else {
                             swal(
@@ -377,16 +400,17 @@
     }
 </script>
 <script>
-    $('.date').datepicker({
-        endDate: '-16y',
+
+    $('#sandbox-container .input-group.date').datepicker({
+
+        endDate: "-16y",
+        format: 'yyyy-mm-dd',
         startView: 1,
         clearBtn: true,
         calendarWeeks: true,
         autoclose: true,
-        format: 'yyyy-mm-dd',
         todayHighlight: true
     });
-
 
 </script>
 </body>
