@@ -2,6 +2,7 @@ package com.school.school.service.impl;
 
 import com.school.school.dto.ResponseDto;
 import com.school.school.dto.ScheduleDto;
+import com.school.school.dto.ScheduleExerciseDto;
 import com.school.school.dtoToEntityMapper.ScheduleDtoToEntityMapper;
 import com.school.school.entity.Exercise;
 import com.school.school.entity.Member;
@@ -91,17 +92,19 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 
    @Override
-   public ResponseDto saveScheduleArray(ScheduleDto scheduleDto) {
+   public ResponseDto saveScheduleArray(ScheduleExerciseDto scheduleExerciseDto) {
        ResponseDto responseDto = new ResponseDto(ResponseEnum.FAIL.getCode(), "Transaction Fail");
 
        try {
-           for (int i = 0; i < scheduleDto.getExercises().size(); i++) {
+           for (int i = 0; i <scheduleExerciseDto.getExercises().size(); i++) {
 
                Schedule schedule = new Schedule();
-               schedule.setSets(Integer.parseInt(scheduleDto.getSetsLIst().get(i)));
-               schedule.setReps(Integer.parseInt(scheduleDto.getRepsList().get(i)));
-               schedule.setScheduleNo(Integer.parseInt(scheduleDto.getScheduleNos().get(i)));
-               Exercise exercise = exerciseDao.getOne(Integer.parseInt((scheduleDto.getExercises().get(i))));
+               Exercise exercise = exerciseDao.getOne(Integer.valueOf(scheduleExerciseDto.getExercises().get(i)));
+               schedule.setExerciseId(exercise);
+               schedule.setSets(Integer.parseInt(scheduleExerciseDto.getSetsLIst().get(i)));
+               schedule.setReps(Integer.parseInt(scheduleExerciseDto.getRepsList().get(i)));
+               schedule.setScheduleNo(Integer.parseInt(scheduleExerciseDto.getScheduleNos().get(i)));
+
 
                scheduleDao.save(schedule);
                responseDto.setCode(ResponseEnum.SUCCESS.getCode());

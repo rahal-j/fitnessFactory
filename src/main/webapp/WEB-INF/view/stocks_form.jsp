@@ -412,7 +412,7 @@
     }
 
 
-</script>>
+</script>
 
 
 <script type="text/javascript">

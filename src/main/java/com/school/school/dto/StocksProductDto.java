@@ -10,9 +10,18 @@ public class StocksProductDto implements Serializable {
     private List<String> expiredates;
     private List<String> batchNos;
     private List<String> datesCreated;
+    private String status;
 
 
     public StocksProductDto() {
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public List<String> getDatesCreated() {

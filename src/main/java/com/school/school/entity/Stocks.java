@@ -29,11 +29,22 @@ public class Stocks {
     @Column(name = "date_created")
     private Date dateCreated;
 
+    @Column(name = "status")
+    private String status;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "product")
     private Product product;
 
     public Stocks() {
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Date getExpireDate() {

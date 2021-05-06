@@ -196,7 +196,7 @@
                                             <div class="row inv_row" id="inv_row0">
 
                                                 <div class="col-md-3 text-center" style="margin-left: 1%;">
-                                                    <select name="product" id="inv_item0" class="form-control chzn-select inv_item keep" >
+                                                    <select name="product" id="inv_item0" class="form-control chzn-select inv_item keep" onchange="getbatch(this)">
                                                         <option value="<c:out value="${product.id}" />">${product.name}</option>
                                                         <%--<option value="${userReg.userRole}">Select User Role</option>--%>
                                                         <c:forEach items="${products}" var="temp">
@@ -296,6 +296,55 @@
 
 <%@include file="footer_src.jsp" %>
 
+<script>
+    $('#btn_search').click(function() {
+
+        var searchId = $("#searchNic").val();
+
+
+        var url1;
+        url1 = "/invoice/searchMember?nic="+searchId;
+
+        $.ajax({
+            type: "GET",
+            url: url1,
+            success: function (data) {
+                if (data.code == 'SUCCESS') {
+                    swal(
+                        {
+                            title: "Success Function!",
+                            text: data.message,
+                            type: "success",
+                            showCancelButton: false,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: "OK!",
+                            closeOnConfirm: false
+                        }),
+                        $("#firstName").val(data.data.firstName);
+                    $("#lastName").val(data.data.lastName);
+                    $("#email").val(data.data.email);
+                    $("#title").val(data.data.title);
+
+
+                    /*
+                                            function () {
+                                                window.location = "/subscription/";
+                                            });
+                    */
+                } else {
+                    swal(
+                        "Data not Found!",
+                        data.message,
+                        "error");
+                }
+            }
+
+        });
+
+    });
+
+</script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.standalone.css">
 
@@ -362,10 +411,10 @@
         $('#add-item').click(function(e){
             e.preventDefault();
 
-            var inv_row = $('   <div class="row inv_row" id="inv_row0">\n' +
+            var inv_row = $('   <div class="row inv_row" id="inv_row'+index+'">\n' +
                 '\n' +
                 '                                                <div class="col-md-3 text-center" style="margin-left: 1%;">\n' +
-                '                                                    <select name="product" id="inv_item'+index+'" class="form-control chzn-select inv_item keep" >\n' +
+                '                                                    <select name="product" id="inv_item'+index+'" class="form-control chzn-select inv_item keep" onchange="getbatch(this)">\n' +
                 '                                                        <option value="<c:out value="${product.id}" />">${product.name}</option>\n' +
                 '                                                        <%--<option value="${userReg.userRole}">Select User Role</option>--%>\n' +
                 '                                                        <c:forEach items="${products}" var="temp">\n' +
@@ -452,28 +501,27 @@
 
         var count = Number($("[id^='inv_row']").last().attr('id').replace("inv_row", ""));
         var products =[];
+        var unitPrices =[];
+        var availableQuantities=[];
         var quantities=[];
-        var expiredates=[];
-        var batchNos=[];
-        var datesCreated=[];
+        var subTotals=[];
         var i;
         for (i = 0; i <= count; i++) {
             products[i] = $("#inv_item"+i).val();
-            quantities[i]= $("#quantity"+i).val();
-            batchNos [i]=$("#batch_no"+i).val();
-            datesCreated [i]=$("#dateCreated"+i).val();
-            if($("#expireDate"+i).val() == undefined || $("#expireDate"+i).val() == ""){
-                expiredates[i] = "" ;
-            }else{
-                expiredates[i]=$("#expireDate"+i).val();
-            }
+            unitPrices[i]= $("#unitPrice"+i).val();
+            availableQuantities [i]=$("#availableQuantity"+i).val();
+            quantities [i]=$("#quantity"+i).val();
+            subTotals [i]=$("#subTotal"+i).val();
+
 
         }
         formData['products']= products;
+        formData['unitPrices']= unitPrices;
+        formData['availableQuantities']= availableQuantities;
         formData['quantities']= quantities;
-        formData['expiredates']= expiredates;
-        formData['batchNos']= batchNos;
-        formData['datesCreated']= batchNos;
+        formData['subTotals']=subTotals;
+        formData['memberId']= $('#searchNic').val();
+
         return JSON.stringify(formData);
     }
 
@@ -502,7 +550,7 @@
         var index_no = id_.substring(8,10);
         $.ajax({
             type : "GET",
-            url : "/stocks/getBatchNo?id="+id,
+            url : "/invoice/getStockDetails?id="+id,
             dataType : "json",
             success : function(data) {
 
@@ -581,6 +629,39 @@
            });
            return JSON.stringify(formData);
        }*/
+</script>
+
+
+<script>
+
+    function getbatch(t){
+        var id_ = t.id;
+
+        var id = $("#"+id_).val();
+        var index_no = id_.substring(8,10);
+        $.ajax({
+            type : "GET",
+            url : "/stocks/getBatchNo?id="+id,
+            dataType : "json",
+            success : function(data) {
+
+                $('#batch_no'+index_no).attr('readonly', true);
+                $('#batch_no'+index_no).val(data.data.batchNo);
+                if(data.data.isExpire == 0){
+                    $('#expireDate'+index_no).attr('readonly', true);
+
+                }else{
+                    $('#expireDate'+index_no).attr('readonly', false);
+
+                }
+
+
+            }
+        });
+
+    }
+
+
 </script>
 </body>
 

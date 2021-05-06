@@ -419,6 +419,7 @@
         formData['setsList']= setsList;
         formData['repsList']= repsList;
         formData['scheduleNos']= scheduleNos;
+        formData['member_id']= $('#searchNic').val();
         return JSON.stringify(formData);
     }
 

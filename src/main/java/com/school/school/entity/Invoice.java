@@ -23,12 +23,57 @@ public class Invoice {
     @Column(name = "total")
     private Double total;
 
+    @Column(name = "sub_total")
+    private Double subtotal;
+
+    @Column(name = "unit_price")
+    private Double unitPrice;
+
+    @Column(name = "available_quantity")
+    private Integer availableQuantity;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product")
     private Product product;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member memberId;
+
 
     public Invoice() {
+    }
+
+    public Member getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(Member memberId) {
+        this.memberId = memberId;
+    }
+
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public Double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(Double subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public Integer getAvailableQuantity() {
+        return availableQuantity;
+    }
+
+    public void setAvailableQuantity(Integer availableQuantity) {
+        this.availableQuantity = availableQuantity;
     }
 
     public Integer getId() {

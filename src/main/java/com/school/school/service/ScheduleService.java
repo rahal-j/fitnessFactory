@@ -2,6 +2,7 @@ package com.school.school.service;
 
 import com.school.school.dto.ResponseDto;
 import com.school.school.dto.ScheduleDto;
+import com.school.school.dto.ScheduleExerciseDto;
 import com.school.school.entity.Schedule;
 
 import java.util.List;
@@ -14,5 +15,7 @@ public interface ScheduleService {
 
     ResponseDto getScheduleDto(String nic);
 
-    ResponseDto saveScheduleArray(ScheduleDto scheduleDto);
+
+
+    ResponseDto saveScheduleArray(ScheduleExerciseDto scheduleExerciseDto);
 }

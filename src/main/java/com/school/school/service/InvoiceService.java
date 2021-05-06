@@ -3,6 +3,7 @@ package com.school.school.service;
 import com.school.school.dto.InvoiceDto;
 import com.school.school.dto.OrderModel;
 import com.school.school.dto.ResponseDto;
+import com.school.school.dto.StocksInvoiceDto;
 import com.school.school.entity.Invoice;
 
 import java.io.File;
@@ -16,4 +17,8 @@ public interface InvoiceService {
     ResponseDto addInvoice(InvoiceDto invoiceDto);
 
     List<Invoice> fetchInvoice();
+
+    ResponseDto saveInvoiceArray(StocksInvoiceDto stocksInvoiceDto);
+
+    ResponseDto getInvoiceDto(String nic);
 }

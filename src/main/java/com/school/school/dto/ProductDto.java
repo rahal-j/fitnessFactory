@@ -9,28 +9,21 @@ public class ProductDto {
     private int isExpire;
     private String status;
     private Date dateCreated;
-    private double buyingPrice;
-    private double sellingPrice;
+    private double unitPrice;
+
 
 
 
     public ProductDto() {
     }
 
-    public double getBuyingPrice() {
-        return buyingPrice;
+
+    public double getUnitPrice() {
+        return unitPrice;
     }
 
-    public void setBuyingPrice(double buyingPrice) {
-        this.buyingPrice = buyingPrice;
-    }
-
-    public double getSellingPrice() {
-        return sellingPrice;
-    }
-
-    public void setSellingPrice(double sellingPrice) {
-        this.sellingPrice = sellingPrice;
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
     public Integer getId() {

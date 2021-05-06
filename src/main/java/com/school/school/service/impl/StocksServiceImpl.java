@@ -100,6 +100,7 @@ public class StocksServiceImpl implements StocksService {
             stocks.setQuantity(Integer.parseInt(stocksProductDto.getQuantities().get(i)));
        //     date1= new SimpleDateFormat("dd/MM/yyyy").parse(stocksProductDto.getDatesCreated().get(i));
           //  stocks.setDateCreated(new Date());
+            stocks.setStatus(TransactionStatus.ACTIVE.name());
 
           stocks.setDateCreated(new Date());
             if(!stocksProductDto.getExpiredates().get(i).isEmpty() ) {

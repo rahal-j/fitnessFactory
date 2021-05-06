@@ -3,6 +3,7 @@ package com.school.school.controller;
 import com.school.school.dto.ExerciseDto;
 import com.school.school.dto.ResponseDto;
 import com.school.school.dto.ScheduleDto;
+import com.school.school.dto.ScheduleExerciseDto;
 import com.school.school.service.ExerciseServise;
 import com.school.school.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +41,8 @@ public class ScheduleController {
 
     @PostMapping("/save")
     @ResponseBody
-    public ResponseDto saveSchedule(@RequestBody ScheduleDto scheduleDto){
-        return scheduleService.saveScheduleArray(scheduleDto);
+    public ResponseDto saveSchedule(@RequestBody ScheduleExerciseDto scheduleExerciseDto){
+        return scheduleService.saveScheduleArray(scheduleExerciseDto);
 
 
 

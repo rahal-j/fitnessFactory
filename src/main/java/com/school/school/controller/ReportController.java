@@ -55,4 +55,14 @@ public class ReportController {
         respHeaders.setContentDispositionFormData("attachment", format("%s-%s.pdf", code, lang));
         return respHeaders;
     }
+
+    @PostMapping(value = "/generate1", produces = "application/pdf")
+    public ResponseEntity<InputStreamResource> invoiceGenerateShedule(@RequestParam(name = "code", defaultValue = "XYZ123456789") String code,
+                                                               @RequestParam(name = "lang", defaultValue = "en") String lang) throws IOException {
+        final OrderModel order = mockOrderService.getOrderByCode(code);
+        final File invoicePdf = invoiceService.generateInvoiceFor(order, Locale.forLanguageTag(lang));
+
+        final HttpHeaders httpHeaders = getHttpHeaders(code, lang, invoicePdf);
+        return new ResponseEntity<>(new InputStreamResource(new FileInputStream(invoicePdf)), httpHeaders, OK);
+    }
 }

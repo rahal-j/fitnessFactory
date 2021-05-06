@@ -11,9 +11,8 @@ public class ProductEntityToDtoMapper {
         productDto.setIsExpire(product.getIsExpire());
         productDto.setStatus(product.getStatus());
         productDto.setDateCreated(product.getDateCreated());
-       /* productDto.setBuyingPrice(product.getBuyingPrice());
-        productDto.setSellingPrice(product.getSellingPrice());
-*/
+       productDto.setUnitPrice(product.getUnitPrice());
+
         return productDto;
 
     }
