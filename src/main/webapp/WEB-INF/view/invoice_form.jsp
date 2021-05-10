@@ -247,11 +247,40 @@
                                                 </button>
                                             </div>
                                         </div>
+
+                                        <div id="cash">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label style="margin-left:-2%;">Discount:</label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input placeholder="Discount" type="text"
+                                                           id="discount" style="text-align: right;"
+                                                           class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <br>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label style="margin-left:-2%;">Total (Rs.):</label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input placeholder="Total" type="text"
+                                                           id="payTotal" style="text-align: right;"
+                                                           class="form-control">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <br>
                                         <div class="row">
                                             <div class="form-actions no-margin-bottom"
                                                  style="text-align: center;">
-                                                <div class="col-sm-3"></div>
-                                                <div class="col-sm-5">
+                                                <div class="col-sm-4"></div>
+                                                <div class="col-sm-4">
                                                     <div>
                                                         <input id="btn_save"
                                                                value="Save" class="btn btn-success btn-md " type="submit" >
@@ -521,6 +550,8 @@
         formData['quantities']= quantities;
         formData['subTotals']=subTotals;
         formData['memberId']= $('#searchNic').val();
+        formData['total'] = $('#payTotal').val();
+        formData['discount'] = $('#discount').val();
 
         return JSON.stringify(formData);
     }
@@ -550,19 +581,13 @@
         var index_no = id_.substring(8,10);
         $.ajax({
             type : "GET",
-            url : "/invoice/getStockDetails?id="+id,
+            url : "/invoice/getstockAndProd?id="+id,
             dataType : "json",
             success : function(data) {
 
-                $('#batch_no'+index_no).attr('readonly', true);
-                $('#batch_no'+index_no).val(data.data.batchNo);
-                if(data.data.isExpire == 0){
-                    $('#expireDate'+index_no).attr('readonly', true);
+                 $('#availableQuantity'+index_no).val(data.data.qty);
+                $('#unitPrice'+index_no).val(  data.data.unitPrice);
 
-                }else{
-                    $('#expireDate'+index_no).attr('readonly', false);
-
-                }
 
 
             }
@@ -632,37 +657,7 @@
 </script>
 
 
-<script>
 
-    function getbatch(t){
-        var id_ = t.id;
-
-        var id = $("#"+id_).val();
-        var index_no = id_.substring(8,10);
-        $.ajax({
-            type : "GET",
-            url : "/stocks/getBatchNo?id="+id,
-            dataType : "json",
-            success : function(data) {
-
-                $('#batch_no'+index_no).attr('readonly', true);
-                $('#batch_no'+index_no).val(data.data.batchNo);
-                if(data.data.isExpire == 0){
-                    $('#expireDate'+index_no).attr('readonly', true);
-
-                }else{
-                    $('#expireDate'+index_no).attr('readonly', false);
-
-                }
-
-
-            }
-        });
-
-    }
-
-
-</script>
 </body>
 
 <!-- END BODY -->

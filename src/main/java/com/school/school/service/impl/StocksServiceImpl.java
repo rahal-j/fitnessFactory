@@ -1,8 +1,7 @@
 package com.school.school.service.impl;
 
-import com.school.school.dto.ResponseDto;
-import com.school.school.dto.StocksDto;
-import com.school.school.dto.StocksProductDto;
+import com.school.school.dto.*;
+import com.school.school.dtoToEntityMapper.ProductDtoToEntityMapper;
 import com.school.school.dtoToEntityMapper.StocksDtoToEntityMapper;
 import com.school.school.entity.Product;
 import com.school.school.entity.Stocks;
@@ -67,8 +66,9 @@ public class StocksServiceImpl implements StocksService {
         List<Stocks> stockList ;
         StocksDto stocksDto = new StocksDto();
 
+
         Product prod = productDao.getOne(productId);
-        stocksDto.setIsExpire(prod.getIsExpire());
+         stocksDto.setIsExpire(prod.getIsExpire());
        stockList = stocksDao.findAllByProduct(prod);
 
         if (stockList == null || stockList.isEmpty()){

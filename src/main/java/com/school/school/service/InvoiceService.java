@@ -21,4 +21,6 @@ public interface InvoiceService {
     ResponseDto saveInvoiceArray(StocksInvoiceDto stocksInvoiceDto);
 
     ResponseDto getInvoiceDto(String nic);
+
+    ResponseDto getUnitPriceAndQty(String productId);
 }

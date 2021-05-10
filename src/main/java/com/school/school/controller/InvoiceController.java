@@ -1,11 +1,11 @@
 package com.school.school.controller;
 
-import com.school.school.dto.InvoiceDto;
 import com.school.school.dto.ProductDto;
 import com.school.school.dto.ResponseDto;
 import com.school.school.dto.StocksInvoiceDto;
 import com.school.school.service.InvoiceService;
 import com.school.school.service.ProductService;
+import com.school.school.service.StocksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +22,9 @@ public class InvoiceController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private StocksService stocksService;
 
 
     @RequestMapping("/")
@@ -65,10 +68,10 @@ public class InvoiceController {
 
 
 
-    @GetMapping("/getStockDetails")
+    @GetMapping("/getstockAndProd")
     @ResponseBody
     public ResponseDto getLastStockId(@RequestParam (value = "id") String id){
-        return stocksService.getLastStockId(Integer.parseInt(id));
+        return invoiceService.getUnitPriceAndQty(id);
 
 
 

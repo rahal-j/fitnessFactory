@@ -1,5 +1,7 @@
 package com.school.school.dto;
 
+import org.apache.commons.lang.math.DoubleRange;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -11,9 +13,27 @@ public class StocksInvoiceDto implements Serializable {
     private List<String> quantities;
     private List<String> subTotals;
     private String memberId;
+    private Integer discount;
+    private Double total;
 
 
     public StocksInvoiceDto() {
+    }
+
+    public Integer getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Integer discount) {
+        this.discount = discount;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
     public String getMemberId() {

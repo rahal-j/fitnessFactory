@@ -5,6 +5,7 @@ import com.school.school.dtoToEntityMapper.InvoiceDtoToEntityMapper;
 import com.school.school.entity.Invoice;
 import com.school.school.entity.Member;
 import com.school.school.entity.Product;
+import com.school.school.entity.Stocks;
 import com.school.school.entityToDtoMapper.InvoiceEntityToDtoMapper;
 import com.school.school.enums.ResponseEnum;
 import com.school.school.repository.InvoiceDao;
@@ -21,6 +22,7 @@ import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.jasperreports.JasperReportsUtils;
 
 import java.io.File;
@@ -173,9 +175,9 @@ public class InvoiceServiceImpl implements InvoiceService {
                 invoice.setUnitPrice(Double.valueOf(stocksInvoiceDto.getUnitPrices().get(i)));
                 Member member = new Member();
                 member = memberDao.findByNic(stocksInvoiceDto.getMemberId());
-
                 invoice.setMemberId(member);
-
+                invoice.setDiscount(stocksInvoiceDto.getDiscount());
+                invoice.setTotal(stocksInvoiceDto.getTotal());
 
 
                 invoiceDao.save(invoice);
@@ -220,10 +222,35 @@ public class InvoiceServiceImpl implements InvoiceService {
 
         return responseDto;
 
+
+
+
     }
 
 
 
+    @Override
+    @Transactional
+    public ResponseDto getUnitPriceAndQty(String productId){
+
+        ResponseDto responseDto =new ResponseDto();
+        Product product = new Product();
+        List<Stocks> stocks = new ArrayList<>();
+        int totalqty = 0;
+        InvoiceProductDto invoiceProductDto = new InvoiceProductDto();
+
+        product = productDao.getOne(Integer.valueOf(productId));
+        invoiceProductDto.setUnitPrice(product.getUnitPrice());
+        stocks = stockdao.findByProductAndStatusDetail(Integer.parseInt(productId));
+
+        for(Stocks item : stocks){
+            totalqty = totalqty+ item.getQuantity();
+        }
+        invoiceProductDto.setQty(totalqty);
+        responseDto.setData(invoiceProductDto);
+        return responseDto;
+
+    }
 
 
 
