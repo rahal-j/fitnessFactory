@@ -108,7 +108,12 @@
                                     <div class="panel-heading"><a
                                             href="/subscription/insertPage"><button style="margin-top: -9%;"
                                                                                 class="btn-sm btn-primary">Add New</button></a>
+
                                     </div>
+
+                                    <div class="panel-heading"><a
+                                            href="/subscription/export"><button style="margin-top: -9%;"
+                                                                                    class="btn-sm btn-primary">PDF List</button></a>
 
                                 </div>
 
