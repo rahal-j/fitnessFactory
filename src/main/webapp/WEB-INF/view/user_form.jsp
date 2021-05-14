@@ -282,9 +282,9 @@
                                                style="float: right;">Confirm Password</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="password" id="confirmPassword" name="password"
+                                        <input type="password" id="confirmPassword" name="confirmPassword"
                                                placeholder="Enter Password Again" class="form-control"
-                                               value="<c:out value="${user.password}" />"/>
+                                               value="<c:out value="${user.confirmPassword}" />"/>
                                     </div>
                                 </div>
                             </div>

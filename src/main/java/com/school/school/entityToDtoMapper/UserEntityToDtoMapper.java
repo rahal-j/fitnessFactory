@@ -2,6 +2,7 @@ package com.school.school.entityToDtoMapper;
 
 import com.school.school.dto.UserDto;
 import com.school.school.entity.User;
+import com.school.school.entity.UserRole;
 
 public class UserEntityToDtoMapper {
 

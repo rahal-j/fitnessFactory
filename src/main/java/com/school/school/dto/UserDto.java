@@ -20,8 +20,21 @@ public class UserDto implements Serializable{
     private String nic;
     private String userName;
     private String password;
+    private String confirmPassword;
     private String address;
     private int title;
+
+
+    public UserDto() {
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 
     public Integer getUserRole() {
         return userRole;

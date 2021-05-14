@@ -26,6 +26,12 @@ public class Invoice {
     @Column(name = "sub_total")
     private Double subtotal;
 
+    @Column(name = "status")
+    private String status;
+
+    @Column(name = "invoice_id")
+    private String invoiceId;
+
     @Column(name = "unit_price")
     private Double unitPrice;
 
@@ -42,6 +48,22 @@ public class Invoice {
 
 
     public Invoice() {
+    }
+
+    public String getInvoiceId() {
+        return invoiceId;
+    }
+
+    public void setInvoiceId(String invoiceId) {
+        this.invoiceId = invoiceId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Member getMemberId() {

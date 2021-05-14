@@ -10,14 +10,14 @@ import java.util.Date;
 public class ScheduleDtoToEntityMapper {
     public static Schedule getScheduleEntity(ScheduleDto scheduleDto, Schedule schedule, Exercise exercise, Member member){
 
-        schedule.setScheduleId(schedule.getScheduleId() !=null? schedule.getScheduleId() : scheduleDto.getId());
+        schedule.setScheduleId(schedule.getScheduleId() !=null? schedule.getScheduleId() : String.valueOf(scheduleDto.getId()));
         schedule.setExerciseId(exercise);
         schedule.setName(scheduleDto.getName());
         schedule.setDate(new Date());
         schedule.setReps(scheduleDto.getReps());
         schedule.setSets(scheduleDto.getSets());
         schedule.setMemberId(member);
-        schedule.setScheduleNo(scheduleDto.getScheduleNo());
+
 
         return schedule;
 

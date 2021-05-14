@@ -273,8 +273,6 @@
                 },
                 title: {
                     required: true,
-                    name_validation: true,
-                    no_space: false
                 },
                 email: {
                     required: true,
@@ -414,8 +412,6 @@
                 },
                 title: {
                     required: true,
-                    name_validation: true,
-                    no_space: false
                 },
                 email: {
                     required: true,
@@ -462,18 +458,20 @@
                     required: true,
 
                 },
+
                 password: {
                     required: true,
-
-                },
-                userName: {
-                    required: true,
-
+                    minlength: 5
                 },
                 confirmPassword: {
                     required: true,
                     equalTo: "#password"
                 },
+                userName: {
+                    required: true,
+
+                },
+
                 agree2: "required",
                 digits: {
                     required: true,
@@ -485,6 +483,14 @@
                 }
             },
             messages: {
+
+                password: {
+                    required: "Please enter new password",
+                    minlength: "Enter at least five characters"
+                },
+                confirmPassword: {
+                    required: "Please confirm new password"
+                },
 
                 first_name: {
                     required: "Please fill this field",
@@ -792,7 +798,10 @@
                 createdUserName: {
                     required: true
                 },
-                subscriptionDate: {
+                paymentFromDate: {
+                    required: true
+                },
+                paymentToDate: {
                     required: true
                 }
             },

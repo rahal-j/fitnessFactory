@@ -97,8 +97,8 @@ public class MemberServiceImpl implements MemberService {
 
         Member member = new Member();
         member = memberDao.getOne(id);
-        UserDto userDto = new UserDto();
-        Date date1 ;
+
+
        /* date1= new SimpleDateFormat("dd/MM/yyyy").parse(date1));
         userDto.setDob(date1);*/
 /*

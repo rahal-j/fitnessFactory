@@ -17,6 +17,7 @@ public class StocksInvoiceDto implements Serializable {
     private Double total;
 
 
+
     public StocksInvoiceDto() {
     }
 

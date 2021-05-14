@@ -15,5 +15,9 @@ public interface UserService {
 
     ResponseDto deactivate(int id);
 
+    User getUserfromUsernameAndPw(String username, String password);
+
     ResponseDto activate(int id);
+
+    ResponseDto getUserData(int id);
 }

@@ -17,5 +17,6 @@ public interface PaymentService {
     ResponseDto getPaymentDto(String nic);
 
 
+    List<Payment> fetchPaymentFromMember(String nic);
 }
 

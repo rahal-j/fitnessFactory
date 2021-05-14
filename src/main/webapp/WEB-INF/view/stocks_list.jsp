@@ -18,6 +18,11 @@
 </head>
 
 <!-- END HEAD -->
+<header >
+
+    <a href="index.html" class="navbar-brand">
+        <img src="../../resources/static/assets/img/logo.png" alt="" height="50" width="120"  /></a>
+</header>
 
 <!-- BEGIN BODY -->
 <body class="padTop53 " >
@@ -74,7 +79,7 @@
                                         <tbody>
                                         <c:forEach items="${stocks}" var="temp">
                                             <tr class="odd gradeX">
-                                                <td><c:out value="${temp.product}"/></td>
+                                                <td><c:out value="${temp.product.name}"/></td>
                                                 <td><c:out value="${temp.batchNo}"/></td>
                                                 <td><c:out value="${temp.expireDate}"/></td>
                                                 <td><c:out value="${temp.quantity}"/></td>
@@ -89,6 +94,10 @@
                                     <div class="panel-heading"><a
                                             href="/stocks/insertPage"><button style="margin-top: -9%;"
                                                                                     class="btn-sm btn-primary">Add New</button></a>
+                                    </div>
+                                    <div class="panel-heading"><a
+                                            href="/stocks/export"><button style="margin-top: -9%;"
+                                                                              class="btn-sm btn-primary">Stocks Pdf</button></a>
                                     </div>
 
                                 </div>

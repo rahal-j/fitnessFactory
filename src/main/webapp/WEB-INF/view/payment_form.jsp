@@ -87,12 +87,12 @@
                             <div class="row">
                                 <div class="form-group">
                                     <div class="col-md-4">
-                                        <label class="control-label col-md-5" style="float: right;"> Payment ID</label>
+                                        <label class="control-label col-md-5" style="float: right;"> Member ID</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" id="id" name="id"
+                                        <input type="text" id="memberId" name="memberId"
                                                readonly="readonly" class="form-control"
-                                               value="<c:out value="${payment.id}" />"/>
+                                               value="<c:out value="${payment.memberId}" />"/>
                                     </div>
                                 </div>
                             </div>
@@ -168,8 +168,48 @@
                                     <div class="col-md-4">
                                         <div id="sandbox-container">
                                             <div class="input-group date">
-                                                <input type="text" id="expireDate" name="expireDate" class="form-control"
+                                                <input type="text" id="expireDate" name="expireDate" readonly="readonly" class="form-control "
                                                        value="<c:out value="${payment.expireDate}" />"><span
+                                                    class="input-group-addon"><i
+                                                    class="glyphicon glyphicon-th"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <%--<div class="row">--%>
+                                <%--<div class="form-group">--%>
+                                    <%--<div class="col-md-4">--%>
+                                        <%--<label class="control-label col-md-5 style="--%>
+                                               <%--style="float: right;">Subscription</label>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="col-md-4">--%>
+                                        <%--<select name="subscription" id="subscription" class="form-control">--%>
+                                            <%--<option value="<c:out value="${subscription.id}" />">${subscription.name}</option>--%>
+                                            <%--&lt;%&ndash;<option value="${userReg.userRole}">Select User Role</option>&ndash;%&gt;--%>
+                                            <%--<c:forEach items="${subscriptions}" var="temp">--%>
+                                                <%--<option value="<c:out value= "${temp.id}" />">${temp.name}</option>--%>
+                                            <%--</c:forEach>--%>
+
+                                        <%--</select>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+
+
+                            <div class="row">
+                                <div class="form-group">
+
+                                    <div class="col-md-4">
+                                        <label class="control-label col-md-5"
+                                               style="float: right;">Payment From Date</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div id="sandbox-container">
+                                            <div class="input-group date">
+                                                <input type="text" id="paymentFromDate" name="paymentFromDate" class="form-control"
+                                                       value="<c:out value="${payment.paymentFromDate}" />"><span
                                                     class="input-group-addon"><i
                                                     class="glyphicon glyphicon-th"></i></span>
                                             </div>
@@ -180,36 +220,16 @@
 
                             <div class="row">
                                 <div class="form-group">
-                                    <div class="col-md-4">
-                                        <label class="control-label col-md-5 style="
-                                               style="float: right;">Subscription</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <select name="subscription" id="subscription" class="form-control">
-                                            <option value="<c:out value="${subscription.id}" />">${subscription.name}</option>
-                                            <%--<option value="${userReg.userRole}">Select User Role</option>--%>
-                                            <c:forEach items="${subscriptions}" var="temp">
-                                                <option value="<c:out value= "${temp.id}" />">${temp.name}</option>
-                                            </c:forEach>
-
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="form-group">
 
                                     <div class="col-md-4">
                                         <label class="control-label col-md-5"
-                                               style="float: right;">New Subscription date</label>
+                                               style="float: right;">Payment To Date</label>
                                     </div>
                                     <div class="col-md-4">
                                         <div id="sandbox-container">
                                             <div class="input-group date">
-                                                <input type="text" id="subscriptionDate" name="subscriptionDate" class="form-control"
-                                                       value="<c:out value="${payment.subscriptionDate}" />"><span
+                                                <input type="text" id="paymentToDate" name="paymentToDate" class="form-control"
+                                                       value="<c:out value="${payment.paymentToDate}" />"><span
                                                     class="input-group-addon"><i
                                                     class="glyphicon glyphicon-th"></i></span>
                                             </div>
@@ -233,40 +253,8 @@
                             </div>
 
 
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-md-4">
-                                        <label class="control-label col-md-5"
-                                               style="float: right;">Created user name</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input type="text" id="createdUserName" name="createdUserName"
-                                               placeholder="Created User Name" class="form-control"
-                                               value="<c:out value="${payment.createdUserName}" />"/>
-                                    </div>
-                                </div>
-                            </div>
 
 
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-md-4">
-                                        <label class="control-label col-md-5 style="
-                                               style="float: right;">Status</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <select name="status" id="status" class="form-control">
-                                            <option value="">Select Status</option>
-                                            <option value="ACTIVE" <c:if test="${payment.status == 'ACTIVE'}"> <c:out
-                                                    value="selected=selected"/></c:if>>ACTIVE
-                                            </option>
-                                            <option value="DEACTIVE" <c:if test="${payment.status == 'DEACTIVE'}">
-                                                <c:out value="selected=selected"/></c:if>>DEACTIVE
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="row">
                                 <div class="form-actions no-margin-bottom"
@@ -308,7 +296,12 @@
 <!--END FOOTER -->
 
 <%@include file="footer_src.jsp" %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.standalone.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js">
+</script>
 
 
 <script type="text/javascript">
@@ -367,18 +360,11 @@
         return JSON.stringify(formData);
     }
 </script>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.standalone.css">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js">
-</script>
-
 <script>
 
     $('#sandbox-container .input-group.date').datepicker({
 
-        format: 'dd/mm/yyyy',
+        format: 'yyyy-mm-dd',
         startView: 1,
         clearBtn: true,
         calendarWeeks: true,
@@ -387,6 +373,8 @@
     });
 
 </script>
+
+
 <script>
     $('#btn_search').click(function() {
 
@@ -419,6 +407,8 @@
                             confirmButtonText: "OK!",
                             closeOnConfirm: false
                         }),
+
+                        $("#memberId").val(data.data.memberId);
                         $("#firstName").val(data.data.firstName);
                         $("#lastName").val(data.data.lastName);
                         $("#email").val(data.data.email);

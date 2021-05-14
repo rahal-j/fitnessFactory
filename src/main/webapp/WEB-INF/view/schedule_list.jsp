@@ -7,7 +7,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Payment List </title>
+    <title>Schedules </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -54,7 +54,7 @@
                         <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Payment List
+                                    Schedules
                                 </div>
                                 <div class="panel-body">
 
@@ -62,18 +62,19 @@
                                         <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Member</th>
+                                            <th>Name</th>
+                                            <th>NIC</th>
                                             <th>Status</th>
                                             <th>Action</th>
 
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach items="${payment}" var="temp">
+                                        <c:forEach items="${schedule}" var="temp">
                                             <tr class="odd gradeX">
                                                 <td><c:out value="${temp.id}"/></td>
                                                 <td><c:out value="${temp.memberId.firstName}"/></td>
-
+                                                <td><c:out value="${temp.memberId.nic}"/></td>
 
                                                 <td align="left">
                                                     <c:if test="${temp.status =='ACTIVE' }">
@@ -84,8 +85,9 @@
                                                     </c:if>
                                                 </td>
 
-                                                <td><a target="_blank"
-                                                       href="/payment/export?id=<c:out value="${temp.memberId.nic}" />"
+                                                <td><a
+                                                        <%--href="/subscription/getUpdateData?id=<c:out value="${temp.id}"/>"--%>
+                                                        href="/schedule/export?id=<c:out value="${temp.memberId.nic}"/>"
                                                         class="btn btn-default btn-grad btn-sm"><span><i
                                                         class="icon-edit" style="color:#455862;"></i></span></a>
 
@@ -107,97 +109,97 @@
                                         </tbody>
                                     </table>
                                     <div class="panel-heading"><a
-                                            href="/payment/insertPage"><button style="margin-top: -9%;"
+                                            href="/schedule/insertPage"><button style="margin-top: -9%;"
                                                                                     class="btn-sm btn-primary">Add New</button></a>
+
                                     </div>
 
+
                                 </div>
-
                             </div>
+
+
+
+
+
+
+
+
                         </div>
-
-
-
-
-
-
-
-
                     </div>
+
+
+
+
+
                 </div>
 
-
-
-
-
             </div>
+            <!--END PAGE CONTENT -->
+
 
         </div>
-        <!--END PAGE CONTENT -->
 
 
-    </div>
+        <!--END MAIN WRAPPER -->
 
 
-    <!--END MAIN WRAPPER -->
+        <%@include file="footer_src.jsp"%>
 
 
-    <%@include file="footer_src.jsp"%>
+        <script>
+            $(document).ready(function() {
+                // $('#dataTables-example').DataTable();
+                $('#dataTables-example').DataTable( {
+                    "order": [[ 0, "desc" ]]
+                } );
 
-
-    <script>
-        $(document).ready(function() {
-            // $('#dataTables-example').DataTable();
-            $('#dataTables-example').DataTable( {
-                "order": [[ 0, "desc" ]]
-            } );
-
-
-        });
-
-        function changeStatus(id,action) {
-
-
-
-            var url;
-            if(action=='ACTIVE'){
-                url = "/payment/activate?id="+id;
-            }else{
-
-                url = "/payment/deactivate?id="+id;
-            }
-
-            $.ajax({
-                type: "GET",
-                url: url,
-                success: function (data) {
-                    if (data.code == 'SUCCESS') {
-                        swal(
-                            {
-                                title: "Success Function!",
-                                text: data.message,
-                                type: "success",
-                                showCancelButton: false,
-                                confirmButtonColor: "#DD6B55",
-                                confirmButtonText: "OK!",
-                                closeOnConfirm: false
-                            },
-                            function () {
-                                window.location = "/payment/";
-                            });
-                    } else {
-                        swal(
-                            "Data not saved!",
-                            data.message,
-                            "error");
-                    }
-                }
 
             });
 
-        }
+            function changeStatus(id,action) {
 
-    </script>
+
+
+                var url;
+                if(action=='ACTIVE'){
+                    url = "/schedule/activate?id="+id;
+                }else{
+
+                    url = "/schedule/deactivate?id="+id;
+                }
+
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    success: function (data) {
+                        if (data.code == 'SUCCESS') {
+                            swal(
+                                {
+                                    title: "Success Function!",
+                                    text: data.message,
+                                    type: "success",
+                                    showCancelButton: false,
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "OK!",
+                                    closeOnConfirm: false
+                                },
+                                function () {
+                                    window.location = "/schedule/";
+                                });
+                        } else {
+                            swal(
+                                "Data not saved!",
+                                data.message,
+                                "error");
+                        }
+                    }
+
+                });
+
+            }
+
+        </script>
 
 </body>
 

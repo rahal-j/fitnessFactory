@@ -3,11 +3,13 @@ package com.school.school.service.impl;
 import com.school.school.dto.PaymentDto;
 import com.school.school.dto.ResponseDto;
 import com.school.school.dtoToEntityMapper.PaymentDtoToEntityMapper;
+import com.school.school.entity.Invoice;
 import com.school.school.entity.Member;
 import com.school.school.entity.Payment;
 import com.school.school.entity.Subscription;
 import com.school.school.entityToDtoMapper.PaymentEntityToDtoMapper;
 import com.school.school.enums.ResponseEnum;
+import com.school.school.enums.TransactionStatus;
 import com.school.school.repository.MemberDao;
 import com.school.school.repository.PaymentDao;
 import com.school.school.repository.SubscriptionDao;
@@ -16,6 +18,7 @@ import com.sun.net.httpserver.Authenticator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,12 +37,29 @@ public class PaymentServiceImpl implements PaymentService {
     public ResponseDto addPayment(PaymentDto paymentDto){
 
         ResponseDto responseDto = new ResponseDto(ResponseEnum.FAIL.getCode() , "Transaction Fail");
+        List<Payment> payments = new ArrayList<>();
+        paymentDto.setStatus(TransactionStatus.ACTIVE.getCode());
+
 
         try{
-            Subscription subscription = subscriptionDao.getOne(paymentDto.getSubscriptionId());
 
-            Payment payment = PaymentDtoToEntityMapper.getPaymentEntity(paymentDto, new Payment(),subscription);
-            paymentDao.save(payment);
+            Member member = memberDao.getOne(paymentDto.getMemberId());
+            payments = paymentDao.findByMemberIdAndStatus(member,TransactionStatus.ACTIVE.getCode());
+            Payment payment = PaymentDtoToEntityMapper.getPaymentEntity(paymentDto, new Payment(),member);
+
+            if(payments.size() == 0 || payments.isEmpty()){
+                paymentDao.save(payment);
+
+            }else{
+                for (Payment payment1 : payments){
+                    payment1.setStatus(TransactionStatus.DEACTIVE.getCode());
+                    paymentDao.save(payment1);
+                }
+                paymentDao.save(payment);
+
+
+            }
+
             responseDto.setCode(ResponseEnum.SUCCESS.getCode());
             responseDto.setMessage("Payment Save Successful");
             return responseDto;
@@ -82,6 +102,18 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
 
+
+    @Override
+    public List<Payment> fetchPaymentFromMember(String nic){
+        Member member = memberDao.findByNic(nic);
+
+
+        List<Payment> payments = paymentDao.findByMemberIdAndStatus(member,TransactionStatus.ACTIVE.getCode());
+
+        return payments;
+
+
+    }
 
 
 

@@ -11,11 +11,9 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "subscription_id")
-    private Subscription subscriptionId;
-
-    @Column(name = "user_id")
-    private Integer userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id_no")
+    private Member memberId;
 
     @Column(name = "date_created")
     private Date dateCreated;
@@ -35,7 +33,18 @@ public class Payment {
     @Column(name = "created_user")
     private String createdUser;
 
+    @Column(name = "membership_expire_date")
+    private Date expireDate;
+
     public Payment() {
+    }
+
+    public Date getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(Date expireDate) {
+        this.expireDate = expireDate;
     }
 
     public Integer getId() {
@@ -46,20 +55,13 @@ public class Payment {
         this.id = id;
     }
 
-    public Subscription getSubscriptionId() {
-        return subscriptionId;
+
+    public Member getMemberId() {
+        return memberId;
     }
 
-    public void setSubscriptionId(Subscription subscriptionId) {
-        this.subscriptionId = subscriptionId;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setMemberId(Member memberId) {
+        this.memberId = memberId;
     }
 
     public Date getDateCreated() {

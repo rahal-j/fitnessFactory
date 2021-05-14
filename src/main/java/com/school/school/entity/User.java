@@ -52,7 +52,18 @@ public class User {
     @Column(name = "contact_number")
     private String contactNo;
 
+    @Column(name = "confirm_password")
+    private String confirmPassword;
+
     public User() {
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public String getContactNo() {

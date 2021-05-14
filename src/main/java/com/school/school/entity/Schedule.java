@@ -10,7 +10,7 @@ public class Schedule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-private Integer scheduleId;
+private Integer id;
 
     @Column(name = "name")
 private String name;
@@ -32,20 +32,30 @@ private Exercise exerciseId;
     @Column(name = "date")
     private Date date;
 
-    @Column(name = "schedule_no")
-    private Integer scheduleNo;
+    @Column(name = "schedule_id")
+    private String scheduleId;
+
+    @Column(name = "status")
+    private String status;
 
 
     public Schedule() {
     }
 
-
-    public Integer getScheduleNo() {
-        return scheduleNo;
+    public String getStatus() {
+        return status;
     }
 
-    public void setScheduleNo(Integer scheduleNo) {
-        this.scheduleNo = scheduleNo;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public int getSets() {
@@ -72,11 +82,11 @@ private Exercise exerciseId;
         this.date = date;
     }
 
-    public Integer getScheduleId() {
+    public String getScheduleId() {
         return scheduleId;
     }
 
-    public void setScheduleId(Integer scheduleId) {
+    public void setScheduleId(String scheduleId) {
         this.scheduleId = scheduleId;
     }
 

@@ -6,7 +6,7 @@ public class PaymentDto {
 
     private Integer id;
     private Integer subscriptionId;
-    private Integer userId;
+    private Integer memberId;
     private Date dateCreated;
     private Date paymentFromDate;
     private Date paymentToDate;
@@ -18,9 +18,19 @@ public class PaymentDto {
     private String lastName;
     private String Title;
     private String email;
+    private Date expireDate;
 
     public PaymentDto() {
 
+    }
+
+
+    public Date getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(Date expireDate) {
+        this.expireDate = expireDate;
     }
 
     public String getFirstName() {
@@ -79,12 +89,12 @@ public class PaymentDto {
         this.subscriptionId = subscriptionId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getMemberId() {
+        return memberId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setMemberId(Integer memberId) {
+        this.memberId = memberId;
     }
 
     public Date getDateCreated() {

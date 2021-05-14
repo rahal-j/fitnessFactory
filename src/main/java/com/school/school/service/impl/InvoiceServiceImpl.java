@@ -2,12 +2,10 @@ package com.school.school.service.impl;
 
 import com.school.school.dto.*;
 import com.school.school.dtoToEntityMapper.InvoiceDtoToEntityMapper;
-import com.school.school.entity.Invoice;
-import com.school.school.entity.Member;
-import com.school.school.entity.Product;
-import com.school.school.entity.Stocks;
+import com.school.school.entity.*;
 import com.school.school.entityToDtoMapper.InvoiceEntityToDtoMapper;
 import com.school.school.enums.ResponseEnum;
+import com.school.school.enums.TransactionStatus;
 import com.school.school.repository.InvoiceDao;
 import com.school.school.repository.MemberDao;
 import com.school.school.repository.ProductDao;
@@ -154,38 +152,71 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 
     @Override
-    public List<Invoice> fetchInvoice(){return invoiceDao.findAll();}
+    public List<Invoice> fetchInvoice(){return invoiceDao.findGroupByInvoice();}
 
 
+
+    @Override
+    public List<Invoice> fetchInvoiceFromMember(String nic){
+        Member member = memberDao.findByNic(nic);
+
+
+        List<Invoice> invoices = invoiceDao.findByMemberIdAndStatus(member,TransactionStatus.ACTIVE.getCode());
+
+        return invoices;
+
+
+    }
 
     @Override
     public ResponseDto saveInvoiceArray(StocksInvoiceDto stocksInvoiceDto){
         ResponseDto responseDto = new ResponseDto(ResponseEnum.FAIL.getCode());
         InvoiceProductDto invoiceProductDto = new InvoiceProductDto();
+        List<Invoice> invoices = new ArrayList<>();
         try {
 
-            for (int i = 0; i < stocksInvoiceDto.getProducts().size(); i++){
-
-                Invoice invoice = new Invoice();
-                Product product = productDao.getOne(Integer.parseInt(stocksInvoiceDto.getProducts().get(i)));
-                invoice.setProduct(product);
-                invoice.setAvailableQuantity(Integer.parseInt(stocksInvoiceDto.getAvailableQuantities().get(i)));
-                invoice.setQuantity(Integer.parseInt(stocksInvoiceDto.getQuantities().get(i)));
-                invoice.setSubtotal(Double.valueOf(stocksInvoiceDto.getSubTotals().get(i)));
-                invoice.setUnitPrice(Double.valueOf(stocksInvoiceDto.getUnitPrices().get(i)));
-                Member member = new Member();
-                member = memberDao.findByNic(stocksInvoiceDto.getMemberId());
-                invoice.setMemberId(member);
-                invoice.setDiscount(stocksInvoiceDto.getDiscount());
-                invoice.setTotal(stocksInvoiceDto.getTotal());
+            int min = 100;
+            int max = 10000;
+            String invoiceId = "INV_";
+            int b = (int)(Math.random()*(max-min+1)+min);
+            invoiceId = invoiceId+b;
 
 
-                invoiceDao.save(invoice);
+            Member member = new Member();
+            member = memberDao.findByNic(stocksInvoiceDto.getMemberId());
+
+                for (int i = 0; i < stocksInvoiceDto.getProducts().size(); i++) {
+
+                    Invoice invoice = new Invoice();
+                    Product product = productDao.getOne(Integer.parseInt(stocksInvoiceDto.getProducts().get(i)));
+                    invoice.setProduct(product);
+                    invoice.setAvailableQuantity(Integer.parseInt(stocksInvoiceDto.getAvailableQuantities().get(i)));
+                    invoice.setQuantity(Integer.parseInt(stocksInvoiceDto.getQuantities().get(i)));
+                    invoice.setSubtotal(Double.valueOf(stocksInvoiceDto.getSubTotals().get(i)));
+                    invoice.setUnitPrice(Double.valueOf(stocksInvoiceDto.getUnitPrices().get(i)));
+                    invoice.setMemberId(member);
+                    invoice.setInvoiceId(invoiceId);
+                    invoice.setDiscount(stocksInvoiceDto.getDiscount());
+                    invoice.setTotal(stocksInvoiceDto.getTotal());
+                    invoice.setStatus(TransactionStatus.ACTIVE.getCode());
+                    invoice.setDate(new Date());
+                    invoiceDao.save(invoice);
+
+                    //deduct from stocks
+                    List<Stocks> stocks = stockdao.findStocksByProductId(Integer.parseInt(stocksInvoiceDto.getProducts().get(i)));
+                    for(Stocks stocks1 : stocks){
+                        //stocks1.
+                    }
+
+                }
+
+
+
                 responseDto.setCode(ResponseEnum.SUCCESS.getCode());
                 responseDto.setMessage("Invoice Added");
 
 
-            }
+
 
 
 
@@ -251,6 +282,10 @@ public class InvoiceServiceImpl implements InvoiceService {
         return responseDto;
 
     }
+
+
+
+
 
 
 

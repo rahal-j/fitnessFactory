@@ -65,6 +65,15 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public User getUserfromUsernameAndPw(String username, String password){
+
+       User user = userDao.findByUserNameAndPassWord(username,password);
+       return user;
+
+
+    }
+
 
 
     @Override
@@ -82,6 +91,7 @@ public class UserServiceImpl implements UserService {
 
 
 
+    @Override
     public ResponseDto getUserData(int id){
         User user = new User();
         user = userDao.getOne(id);

@@ -13,8 +13,9 @@ public interface ScheduleService {
     List<Schedule> fetchSchedule();
 
 
-    ResponseDto getScheduleDto(String nic);
+    List<Schedule> fetchSchedulefromMember(String nic);
 
+    ResponseDto getScheduleDto(String nic);
 
 
     ResponseDto saveScheduleArray(ScheduleExerciseDto scheduleExerciseDto);

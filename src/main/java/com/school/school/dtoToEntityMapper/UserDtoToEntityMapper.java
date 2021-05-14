@@ -22,6 +22,7 @@ public class UserDtoToEntityMapper {
         user.setTitle(userDto.getTitle());
         user.setUserName(userDto.getUserName());
         user.setPassWord(userDto.getPassword());
+        user.setConfirmPassword(userDto.getConfirmPassword());
         user.setUserRole(userRole);
 
         return user;

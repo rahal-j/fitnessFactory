@@ -95,7 +95,7 @@
                                                            style="float: right;">Title</label>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <select name="title" id="title" class="form-control">
+                                                    <select name="title" id="title" class="form-control" readonly="readonly">
                                                         <option value="">Select Title</option>
                                                         <option value="0" >Mr</option>
                                                         <option value="1" >Mrs</option>
@@ -115,7 +115,7 @@
                                                            style="float: right;">First Name</label>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input type="text" id="firstName" name="firstName"
+                                                    <input type="text" id="firstName" name="firstName " readonly="readonly"
                                                            placeholder="Enter First Name" class="form-control"
                                                            value=""/>
                                                 </div>
@@ -129,7 +129,7 @@
                                                            style="float: right;">Last Name</label>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input type="text" id="lastName" name="lastName"
+                                                    <input type="text" id="lastName" name="lastName" readonly="readonly"
                                                            placeholder="Enter Last Name" class="form-control"
                                                            value=""/>
                                                 </div>
@@ -142,12 +142,13 @@
                                                            style="float: right;">Email</label>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input type="email" id="email" name="email"
+                                                    <input type="email" id="email" name="email" readonly="readonly"
                                                            placeholder="Enter Email" class="form-control"
                                                            value=""/>
                                                 </div>
                                             </div>
                                         </div>
+
 
                                         <div class="row">
                                             <div class="form-group">
@@ -163,19 +164,10 @@
                                             </div>
                                         </div>
 
-
-                                        <div class="row">
-                                            <div class="col-md-1 text-center">
-	<span style="font-size:154px; font-family: Calibri; color:#455862; border-color:#DCFFFF; background-color:#DCFFFF;"><input readonly id="series_id" class="form-control hidden"
-                                                                                                                               name="series_id" value="${series_id}" id="inv_price0"
-                                                                                                                               type="text" /></span></div></div>
                                         <br />
                                         <div class="row">
 
-                                            <div class="col-md-1 text-center" >
-                                                <strong>Schedule No</strong>
-                                            </div>
-                                            <div class="col-md-5 text-center">
+                                             <div class="col-md-5 text-center">
                                                 <strong>Exercise</strong>
                                             </div>
                                             <div class="col-md-2 text-center">
@@ -192,11 +184,6 @@
 
                                             <div class="row inv_row" id="inv_row0">
 
-                                                <div class="col-md-1 text-center">
-                                                    <input id="scheduleNo0" class="form-control"
-                                                           name="scheduleNo" type="text"
-                                                           value="<c:out value="${schedule.scheduleNo}" />"/>
-                                                </div>
 
 
                                                 <div class="col-md-5 text-center" style="margin-left: 1%;">
@@ -220,12 +207,12 @@
                                                            value="<c:out value="${schedule.reps}" />"/>
                                                 </div>
 
-                                                <%--<div class="col-md-1 text-center" style="margin-left: 1.2%;">--%>
-                                                    <%--<button id="remove" class="btn btn-danger  item_remove"--%>
-                                                            <%--type="button">--%>
-                                                        <%--<i class="icon-minus-sign"></i>--%>
-                                                    <%--</button>--%>
-                                                <%--</div>--%>
+                                                <%--<div class="col-md-1 text-center" style="margin-left: 1.2%;">
+                                                    <button id="remove" class="btn btn-danger  item_remove"
+                                                            type="button">
+                                                        <i class="icon-minus-sign"></i>
+                                                    </button>
+                                                </div>--%>
 
                                             </div>
 
@@ -318,18 +305,14 @@
         $('#add-item').click(function(e){
             e.preventDefault();
 
-            var inv_row = $(' <div class="row inv_row" id="inv_row'+index+'">\n' +
+            var inv_row = $('  <div class="row inv_row" id="inv_row'+index+'">\n' +
                 '\n' +
                 '\n' +
-                '                                                 <div class="col-md-1 text-center">\n' +
-                '                                                    <input id="scheduleNo'+index+'" class="form-control"\n' +
-                '                                                           name="scheduleNo" type="text"\n' +
-                '                                                           value="<c:out value="${schedule.scheduleNo}" />"/>\n' +
-                '                                                </div>' +
-                '                                                              <div class="col-md-5 text-center" style="margin-left: 1%;">\n' +
+                '\n' +
+                '                                                <div class="col-md-5 text-center" style="margin-left: 1%;">\n' +
                 '                                                    <select name="exercise" id="exercise'+index+'" class="form-control chzn-select exercise keep">\n' +
                 '                                                        <option value="<c:out value="${exercise.id}" />">${exercise.name}</option>\n' +
-                 '                                                        <c:forEach items="${exercises}" var="temp">\n' +
+                '                                                        <c:forEach items="${exercises}" var="temp">\n' +
                 '                                                            <option value="<c:out value= "${temp.id}" />">${temp.name}</option>\n' +
                 '                                                        </c:forEach>\n' +
                 '\n' +
@@ -342,7 +325,7 @@
                 '                                                           value="<c:out value="${schedule.sets}" />"/>\n' +
                 '                                                </div>\n' +
                 '                                                <div class="col-md-2 form-group text-center "style="margin-left: 0%;">\n' +
-                '                                                    <input class="form-control child" name="reps" id="reps'+index+'\n' +
+                '                                                    <input class="form-control child" name="reps" id="reps'+index+'"\n' +
                 '                                                           type="text"\n' +
                 '                                                           value="<c:out value="${schedule.reps}" />"/>\n' +
                 '                                                </div>\n' +
@@ -405,21 +388,20 @@
         var exercises =[];
         var setsList =[];
         var repsList =[];
-        var scheduleNos =[];
         var i;
         for (i = 0; i <= count; i++) {
             exercises[i] = $("#exercise"+i).val();
             setsList[i]= $("#sets"+i).val();
             repsList [i]=$("#reps"+i).val();
-            scheduleNos [i]=$("#scheduleNo"+i).val();
 
 
         }
         formData['exercises']= exercises;
         formData['setsList']= setsList;
         formData['repsList']= repsList;
-        formData['scheduleNos']= scheduleNos;
-        formData['member_id']= $('#searchNic').val();
+        formData['scheduleId']= $('#scheduleId').val();
+        formData['memberId']= $('#searchNic').val();
+        formData['scheduleName']= $('#scheduleName').val();
         return JSON.stringify(formData);
     }
 
@@ -449,6 +431,7 @@
                 if (!$("#scheduleForm").valid())
                     return false;
                 var formData = getFormDataAsDTO("scheduleForm");
+
                 $.ajax({
                     type: "POST",
                     url: "/schedule/save",
@@ -484,15 +467,7 @@
     });
 
 
-    function getFormDataAsDTO(formId) {
-        var formElement = $('form#' + formId);
-        var formData = new Object();
-        var formDataArray = formElement.serializeArray();
-        $.each(formDataArray, function (i, obj) {
-            formData[obj.name] = obj.value;
-        });
-        return JSON.stringify(formData);
-    }
+
 </script>
 <script>
     $('#btn_search').click(function() {
@@ -530,6 +505,7 @@
                     $("#lastName").val(data.data.lastName);
                     $("#email").val(data.data.email);
                     $("#title").val(data.data.title);
+
 
 
                     /*

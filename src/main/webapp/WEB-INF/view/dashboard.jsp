@@ -15,7 +15,12 @@
 </head>
 
 <!-- END HEAD -->
+<!-- LOGO SECTION -->
+<header class="navbar-header">
 
+    <a href="index.html" class="navbar-brand">
+        <img src="//assets/img/logo.png" alt="" /></a>
+</header>
 <!-- BEGIN BODY -->
 <body class="padTop53 " >
 

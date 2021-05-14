@@ -217,12 +217,12 @@
                                                 </div>
                                                 <div class="col-md-1 form-group text-center " style="margin-left: 0%;">
                                                     <input class="form-control child" name="quantity" id="quantity0"
-                                                           type="text"
+                                                           type="text"  onchange="getSubtotal(this)"
                                                            value="<c:out value="${invoice.quantity}" />"/>
                                                 </div>
 
                                                 <div class="col-md-2 text-center">
-                                                    <input id="subTotal0" class="form-control"
+                                                    <input id="subTotal0" class="form-control amount"
                                                            name="batchNo" type="text"
                                                            value="<c:out value="${invoice.subTotal}" />"/>
                                                 </div>
@@ -256,7 +256,7 @@
                                                 <div class="col-md-4">
                                                     <input placeholder="Discount" type="text"
                                                            id="discount" style="text-align: right;"
-                                                           class="form-control">
+                                                           class="form-control amount">
                                                 </div>
                                             </div>
 
@@ -268,8 +268,8 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <input placeholder="Total" type="text"
-                                                           id="payTotal" style="text-align: right;"
-                                                           class="form-control">
+                                                           id="payTotal" name="total" style="text-align: right;"
+                                                           class="form-control amount">
                                                 </div>
                                             </div>
 
@@ -414,6 +414,24 @@
         /*----------- END chosen CODE -------------------------*/
     });
 </script>
+
+<%--Begin of mask--%>
+<script>
+
+   function getSubtotal(t){
+
+       var id_ = t.id;
+          var lineID = id_.replace("quantity", "");
+        var unitPrice =  Number($("#unitPrice"+lineID).val());
+        $("#subTotal"+lineID).val(unitPrice * Number(t.value));
+
+   }
+
+
+</script>
+
+
+
 <script>
     $(function() {
         formValidation();
@@ -464,7 +482,7 @@
                 '                                                </div>\n' +
                 '                                                <div class="col-md-1 form-group text-center " style="margin-left: 0%;">\n' +
                 '                                                    <input class="form-control child" name="quantity" id="quantity'+index+'"\n' +
-                '                                                           type="text"\n' +
+                '                                                           type="text" onchange="getSubtotal(this)"\n' +
                 '                                                           value="<c:out value="${invoice.quantity}" />"/>\n' +
                 '                                                </div>\n' +
                 '\n' +

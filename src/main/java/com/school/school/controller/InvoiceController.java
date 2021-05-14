@@ -1,8 +1,13 @@
 package com.school.school.controller;
 
+import com.lowagie.text.DocumentException;
+import com.school.school.PdfExporter.InvoicePdfExporter;
+import com.school.school.PdfExporter.SchedulePdfExporter;
 import com.school.school.dto.ProductDto;
 import com.school.school.dto.ResponseDto;
 import com.school.school.dto.StocksInvoiceDto;
+import com.school.school.entity.Invoice;
+import com.school.school.entity.Schedule;
 import com.school.school.service.InvoiceService;
 import com.school.school.service.ProductService;
 import com.school.school.service.StocksService;
@@ -11,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @RequestMapping("invoice")
@@ -77,6 +84,21 @@ public class InvoiceController {
 
     }
 
+
+    @GetMapping("/export")
+    public void exportToPdf(HttpServletResponse response, @RequestParam String id) throws DocumentException, IOException {
+        response.setContentType("application/pdf");
+        String headerKey = "content-deposition";
+        String headerValue = "attachment; filename = subscription.pdf";
+
+        response.setHeader(headerKey, headerValue);
+        List<Invoice> invoices = invoiceService.fetchInvoiceFromMember(id);
+
+        InvoicePdfExporter exporter = new InvoicePdfExporter(invoices);
+        exporter.export(response);
+
+
+    }
 
 
 

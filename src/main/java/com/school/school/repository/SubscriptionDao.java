@@ -10,4 +10,6 @@ public interface SubscriptionDao extends JpaRepository<Subscription,Integer> {
    List<Subscription> findAllByStatus(String status);
    Subscription findByName (String name);
 
+
+
 }

@@ -12,6 +12,7 @@ public class PaymentEntityToDtoMapper {
         paymentDto.setFirstName(member.getFirstName());
         paymentDto.setEmail(member.getEmail());
         paymentDto.setTitle(member.getTitle());
+        paymentDto.setMemberId(member.getId());
 
 
 

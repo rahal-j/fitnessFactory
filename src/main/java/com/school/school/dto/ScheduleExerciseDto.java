@@ -5,9 +5,36 @@ import java.util.List;
 public class ScheduleExerciseDto {
 
     private List<String> exercises;
-    private List<String> setsLIst;
+    private List<String> setsList;
     private List<String> repsList;
-    private List<String> scheduleNos;
+    private String memberId;
+    private Integer scheduleId;
+    private String scheduleName;
+
+
+    public String getScheduleName() {
+        return scheduleName;
+    }
+
+    public void setScheduleName(String scheduleName) {
+        this.scheduleName = scheduleName;
+    }
+
+    public Integer getScheduleId() {
+        return scheduleId;
+    }
+
+    public void setScheduleId(Integer scheduleId) {
+        this.scheduleId = scheduleId;
+    }
+
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
 
     public List<String> getExercises() {
         return exercises;
@@ -17,12 +44,12 @@ public class ScheduleExerciseDto {
         this.exercises = exercises;
     }
 
-    public List<String> getSetsLIst() {
-        return setsLIst;
+    public List<String> getSetsList() {
+        return setsList;
     }
 
-    public void setSetsLIst(List<String> setsLIst) {
-        this.setsLIst = setsLIst;
+    public void setSetsList(List<String> setsList) {
+        this.setsList = setsList;
     }
 
     public List<String> getRepsList() {
@@ -33,11 +60,5 @@ public class ScheduleExerciseDto {
         this.repsList = repsList;
     }
 
-    public List<String> getScheduleNos() {
-        return scheduleNos;
-    }
 
-    public void setScheduleNos(List<String> scheduleNos) {
-        this.scheduleNos = scheduleNos;
-    }
 }

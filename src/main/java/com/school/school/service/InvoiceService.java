@@ -18,6 +18,8 @@ public interface InvoiceService {
 
     List<Invoice> fetchInvoice();
 
+    List<Invoice> fetchInvoiceFromMember(String nic);
+
     ResponseDto saveInvoiceArray(StocksInvoiceDto stocksInvoiceDto);
 
     ResponseDto getInvoiceDto(String nic);

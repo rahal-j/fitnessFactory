@@ -45,6 +45,27 @@ public class UserController {
     }
 
 
+    @GetMapping("/activate")
+    @ResponseBody
+    public ResponseDto activate(@RequestParam int id) {
+        return userService.activate(id);
+    }
+
+    @GetMapping("/deactivate")
+    @ResponseBody
+    public ResponseDto deactivate(@RequestParam int id) {
+        return userService.deactivate(id);
+    }
+
+
+
+    @GetMapping("/getUpdateData")
+    public String getMemberData(@RequestParam int id, Model model) {
+        model.addAttribute("user",userService.getUserData(id).getData());
+        return "user_form";
+    }
+
+
 
 
 
