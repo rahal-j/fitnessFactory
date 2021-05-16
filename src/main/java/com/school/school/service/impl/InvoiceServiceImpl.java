@@ -157,11 +157,11 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 
     @Override
-    public List<Invoice> fetchInvoiceFromMember(String nic){
-        Member member = memberDao.findByNic(nic);
+    public List<Invoice> fetchInvoiceFromInvoiceId(String invoiceId){
+       // Invoice invoice  = invoiceDao.findAllByInvoiceId(invoiceId);
 
 
-        List<Invoice> invoices = invoiceDao.findByMemberIdAndStatus(member,TransactionStatus.ACTIVE.getCode());
+        List<Invoice> invoices = invoiceDao.findByInvoiceId(invoiceId);
 
         return invoices;
 
@@ -192,8 +192,8 @@ public class InvoiceServiceImpl implements InvoiceService {
                     invoice.setProduct(product);
                     invoice.setAvailableQuantity(Integer.parseInt(stocksInvoiceDto.getAvailableQuantities().get(i)));
                     invoice.setQuantity(Integer.parseInt(stocksInvoiceDto.getQuantities().get(i)));
-                    invoice.setSubtotal(Double.valueOf(stocksInvoiceDto.getSubTotals().get(i)));
-                    invoice.setUnitPrice(Double.valueOf(stocksInvoiceDto.getUnitPrices().get(i)));
+                    invoice.setSubtotal(Float.valueOf(stocksInvoiceDto.getSubTotals().get(i)));
+                    invoice.setUnitPrice(Float.valueOf(stocksInvoiceDto.getUnitPrices().get(i)));
                     invoice.setMemberId(member);
                     invoice.setInvoiceId(invoiceId);
                     invoice.setDiscount(stocksInvoiceDto.getDiscount());
@@ -203,9 +203,26 @@ public class InvoiceServiceImpl implements InvoiceService {
                     invoiceDao.save(invoice);
 
                     //deduct from stocks
-                    List<Stocks> stocks = stockdao.findStocksByProductId(Integer.parseInt(stocksInvoiceDto.getProducts().get(i)));
-                    for(Stocks stocks1 : stocks){
-                        //stocks1.
+                    int orderedQty = invoice.getQuantity();
+
+                    List<Stocks> stocks = stockdao.findStocksByProductIdAes(Integer.parseInt(stocksInvoiceDto.getProducts().get(i)));
+                     for(Stocks stocks1 : stocks){
+                        int currentStock = stocks1.getQuantity();
+                        if(orderedQty != 0 && orderedQty < currentStock){
+                            stocks1.setQuantity(currentStock-orderedQty);
+                            stockdao.save(stocks1);
+                            orderedQty = 0;
+                        }else if( orderedQty != 0 && orderedQty == currentStock){
+                            stocks1.setQuantity(0);
+                            stocks1.setStatus(TransactionStatus.DEACTIVE.getCode());
+                            stockdao.save(stocks1);
+                            orderedQty = 0 ;
+                        }else if( orderedQty != 0 && orderedQty > currentStock){
+                            stocks1.setQuantity(0);
+                            stocks1.setStatus(TransactionStatus.DEACTIVE.getCode());
+                            orderedQty = orderedQty - currentStock;
+                            stockdao.save(stocks1);
+                        }
                     }
 
                 }

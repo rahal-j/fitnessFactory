@@ -254,9 +254,9 @@
                                                     <label style="margin-left:-2%;">Discount:</label>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input placeholder="Discount" type="text"
+                                                    <input placeholder="Discount" type="number" value="0"
                                                            id="discount" style="text-align: right;"
-                                                           class="form-control amount">
+                                                           class="form-control input-group pull-right discount">
                                                 </div>
                                             </div>
 
@@ -324,6 +324,19 @@
 <!--END FOOTER -->
 
 <%@include file="footer_src.jsp" %>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.13.4/jquery.mask.min.js"></script>
+
+<script>
+    $(document).ready(function ($) {
+        $('.amount').mask("#,###.##",{reverse : true})
+
+    })
+
+
+
+</script>
+
 
 <script>
     $('#btn_search').click(function() {
@@ -578,9 +591,80 @@
 
 
 
+    //SUubTotal & available stock validation  calcuation
+
+    $("body").on("keyup","[id^='quantity']",function() {
+        elementID = this.id.replace("quantity","");
+
+        /* alert($("#inv_qty"+elementID).val()); */
+        var stock = +$('#availableQuantity'+elementID).val();
+        var qty = +$("#quantity" + elementID).val();
+        if(qty > stock){
+            sweetAlert("", "Your available stock is "+stock, "error");
+        }
+        price = +($("#unitPrice" + elementID).val());
+        subtotal = qty * price;
+        $("#subTotal" + elementID).val(
+            subtotal.toFixed(2));
+        totalCal();
+
+    });
+
+    //		Calcuate Grand tot
+    //
+    // al
+    function totalCal() {
+        var count = Number($("[id^='subTotal']").last().attr('id').replace("subTotal", ""));
+
+        var total = 0;
+        for (i = 0; i <= count; i++) {
+            var inv_sub_total = $("#subTotal" + i).val();
+
+            if (inv_sub_total !== undefined) {
+                var sub_total = Number(inv_sub_total);
+                total = total + sub_total;
+
+            }
+        }
+
+        $('#payTotal').val(total.toFixed(2));
+       // calVat();
+
+    }
+
+    // Clculate Vat%
+    function calVat() {
+        var vat = parseInt($('#vat').val());
+        total = $('#total').val();
+        vat_final = total * (1 + vat / 100);
+        $('#invoiced_total').val(vat_final.toFixed(2));
+    }
+
+    // Calculate Discount
 
 
+    function discountCal() {
 
+        var total = $('#payTotal').val();
+
+        var disc_rate1 = parseInt($("#discount").val());
+        // $('#disc').val(disc_rate)
+        if(isNaN(disc_rate1)){
+            disc_rate = 0;
+        }else {
+            disc_rate = disc_rate1;
+        }
+        discounted_val = total * (1 - disc_rate / 100);
+
+        $('#payTotal').val(
+            discounted_val.toFixed(2));
+
+    }
+
+    $('#discount').on('keyup',function() {
+        totalCal();
+        discountCal();
+    });
 
 
 

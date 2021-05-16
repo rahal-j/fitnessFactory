@@ -303,6 +303,8 @@
         $(function() {
             formValidation();
         });
+       var date = $('#dob').val();
+       $('#dob').val(date.substring(0,10));
         $("#memberForm").submit(
             function (e) {
                 e.preventDefault();

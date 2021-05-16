@@ -92,7 +92,7 @@ public class InvoiceController {
         String headerValue = "attachment; filename = subscription.pdf";
 
         response.setHeader(headerKey, headerValue);
-        List<Invoice> invoices = invoiceService.fetchInvoiceFromMember(id);
+        List<Invoice> invoices = invoiceService.fetchInvoiceFromInvoiceId(id);
 
         InvoicePdfExporter exporter = new InvoicePdfExporter(invoices);
         exporter.export(response);

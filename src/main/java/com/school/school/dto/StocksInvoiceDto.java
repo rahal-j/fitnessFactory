@@ -14,7 +14,7 @@ public class StocksInvoiceDto implements Serializable {
     private List<String> subTotals;
     private String memberId;
     private Integer discount;
-    private Double total;
+    private Float total;
 
 
 
@@ -29,11 +29,11 @@ public class StocksInvoiceDto implements Serializable {
         this.discount = discount;
     }
 
-    public Double getTotal() {
+    public Float getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(Float total) {
         this.total = total;
     }
 

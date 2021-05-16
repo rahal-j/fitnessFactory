@@ -3,10 +3,8 @@ package com.school.school.service.impl;
 import com.school.school.dto.PaymentDto;
 import com.school.school.dto.ResponseDto;
 import com.school.school.dtoToEntityMapper.PaymentDtoToEntityMapper;
-import com.school.school.entity.Invoice;
 import com.school.school.entity.Member;
 import com.school.school.entity.Payment;
-import com.school.school.entity.Subscription;
 import com.school.school.entityToDtoMapper.PaymentEntityToDtoMapper;
 import com.school.school.enums.ResponseEnum;
 import com.school.school.enums.TransactionStatus;
@@ -14,7 +12,6 @@ import com.school.school.repository.MemberDao;
 import com.school.school.repository.PaymentDao;
 import com.school.school.repository.SubscriptionDao;
 import com.school.school.service.PaymentService;
-import com.sun.net.httpserver.Authenticator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,8 +41,11 @@ public class PaymentServiceImpl implements PaymentService {
         try{
 
             Member member = memberDao.getOne(paymentDto.getMemberId());
-            payments = paymentDao.findByMemberIdAndStatus(member,TransactionStatus.ACTIVE.getCode());
+            payments = paymentDao.findAllByMemberIdAndStatus(member,TransactionStatus.ACTIVE.getCode());
             Payment payment = PaymentDtoToEntityMapper.getPaymentEntity(paymentDto, new Payment(),member);
+
+
+
 
             if(payments.size() == 0 || payments.isEmpty()){
                 paymentDao.save(payment);
@@ -84,11 +84,21 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public ResponseDto getPaymentDto(String nic){
 
+
+
         Member member = null;
         ResponseDto responseDto = new ResponseDto();
         PaymentDto paymentDto = new PaymentDto();
          member = memberDao.findByNic(nic);
-       paymentDto = PaymentEntityToDtoMapper.getPaymentDto(member);
+         Payment payment = paymentDao.findByMemberIdAndStatus(member,TransactionStatus.ACTIVE.getCode());
+         if(payment.getPaymentToDate() != null){
+             paymentDto.setOldexpireDate(payment.getPaymentToDate().toString());
+
+         }else{
+             paymentDto.setOldexpireDate("N\\nA");
+
+         }
+       paymentDto = PaymentEntityToDtoMapper.getPaymentDto(paymentDto,member);
          if (member != null){
              responseDto.setCode(ResponseEnum.SUCCESS.getCode());
              responseDto.setMessage("Please Proceed");
@@ -108,7 +118,7 @@ public class PaymentServiceImpl implements PaymentService {
         Member member = memberDao.findByNic(nic);
 
 
-        List<Payment> payments = paymentDao.findByMemberIdAndStatus(member,TransactionStatus.ACTIVE.getCode());
+        List<Payment> payments = paymentDao.findAllByMemberIdAndStatus(member,TransactionStatus.ACTIVE.getCode());
 
         return payments;
 

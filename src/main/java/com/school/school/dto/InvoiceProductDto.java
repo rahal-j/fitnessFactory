@@ -3,7 +3,7 @@ package com.school.school.dto;
 public class InvoiceProductDto {
 
   private int qty;
-  private double unitPrice;
+  private Float unitPrice;
 
 
 
@@ -18,11 +18,11 @@ public class InvoiceProductDto {
         this.qty = qty;
     }
 
-    public double getUnitPrice() {
+    public Float getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(double unitPrice) {
+    public void setUnitPrice(Float unitPrice) {
         this.unitPrice = unitPrice;
     }
 }

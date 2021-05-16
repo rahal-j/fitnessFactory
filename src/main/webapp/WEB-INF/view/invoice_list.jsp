@@ -54,7 +54,7 @@
                         <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Subscription List
+                                    Invoice List
                                 </div>
                                 <div class="panel-body">
 
@@ -63,8 +63,7 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Name</th>
-                                            <th>NIC</th>
-                                            <th>Status</th>
+                                            <th>Date</th>
                                             <th>Action</th>
 
                                         </tr>
@@ -74,36 +73,29 @@
                                             <tr class="odd gradeX">
                                                 <td><c:out value="${temp.id}"/></td>
                                                 <td><c:out value="${temp.memberId.firstName}"/></td>
-                                                <td><c:out value="${temp.memberId.nic}"/></td>
+                                                <td><c:out value="${temp.date}"/></td>
 
-                                                <td align="left">
-                                                    <c:if test="${temp.status =='ACTIVE' }">
-                                                        <lable class=" label btn-success">Active</lable>
-                                                    </c:if>
-                                                    <c:if test="${temp.status =='DEACTIVE' }">
-                                                        <lable class=" label btn-danger">Deactive</lable>
-                                                    </c:if>
-                                                </td>
 
                                                 <td><a
                                                     <%--href="/subscription/getUpdateData?id=<c:out value="${temp.id}"/>"--%>
-                                                        href="/invoice/export?id=<c:out value="${temp.memberId.nic}"/>"
+                                                        href="/invoice/export?id=<c:out value="${temp.invoiceId}"/>"
                                                         class="btn btn-default btn-grad btn-sm"><span><i
-                                                        class="icon-edit" style="color:#455862;"></i></span></a>
+                                                        class="icon-archive" style="color:#455862;"></i></span></a>
 
-                                                    <c:if test="${temp.status =='ACTIVE' }">
-                                                        <a
-                                                                href="" onclick="changeStatus(<c:out value="${temp.id}"/>,'DEACTIVE')"
-                                                                class="navg status btn btn-default btn-grad btn-sm"><span><i
-                                                                class="icon-trash"
-                                                                style="color:#455862;"></i></span></a>
-                                                    </c:if>
-                                                    <c:if test="${temp.status =='DEACTIVE' }">
-                                                        <a
-                                                                href="" onclick="changeStatus(<c:out value="${temp.id}"/>,'ACTIVE')"
-                                                                class="navg status btn btn-default btn-grad btn-sm"><span><i
-                                                                class="icon-ok " style="color:#455862;"></i></span></a>
-                                                    </c:if></td>
+                                                    <%--<c:if test="${temp.status =='ACTIVE' }">--%>
+                                                        <%--<a--%>
+                                                                <%--href="" onclick="changeStatus(<c:out value="${temp.id}"/>,'DEACTIVE')"--%>
+                                                                <%--class="navg status btn btn-default btn-grad btn-sm"><span><i--%>
+                                                                <%--class="icon-trash"--%>
+                                                                <%--style="color:#455862;"></i></span></a>--%>
+                                                    <%--</c:if>--%>
+                                                    <%--<c:if test="${temp.status =='DEACTIVE' }">--%>
+                                                        <%--<a--%>
+                                                                <%--href="" onclick="changeStatus(<c:out value="${temp.id}"/>,'ACTIVE')"--%>
+                                                                <%--class="navg status btn btn-default btn-grad btn-sm"><span><i--%>
+                                                                <%--class="icon-ok " style="color:#455862;"></i></span></a>--%>
+                                                    <%--</c:if>--%>
+                                                </td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>
@@ -114,9 +106,6 @@
 
                                     </div>
 
-                                    <div class="panel-heading"><a
-                                            href="/invoice/export"><button style="margin-top: -9%;"
-                                                                                class="btn-sm btn-primary">PDF List</button></a>
 
                                     </div>
 

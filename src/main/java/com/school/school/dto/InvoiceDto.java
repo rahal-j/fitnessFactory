@@ -11,7 +11,7 @@ public class InvoiceDto implements Serializable {
     private Date date;
     private Integer quantity;
     private Integer discount;
-    private Double total;
+    private Float total;
     private Integer product;
     private Integer memberId;
     private String memberStatus;
@@ -104,11 +104,11 @@ public class InvoiceDto implements Serializable {
         this.discount = discount;
     }
 
-    public Double getTotal() {
+    public Float getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(Float total) {
         this.total = total;
     }
 

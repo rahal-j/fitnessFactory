@@ -6,7 +6,6 @@ import com.school.school.dtoToEntityMapper.AttendanceDtoToEntityMapper;
 import com.school.school.entity.Attendance;
 import com.school.school.entity.Member;
 import com.school.school.entity.Payment;
-import com.school.school.entityToDtoMapper.AttendanceEntityToDtoMapper;
 import com.school.school.enums.ResponseEnum;
 import com.school.school.enums.TransactionStatus;
 import com.school.school.repository.AttendanceDao;
@@ -78,7 +77,7 @@ public class AttendanceServiceImpl implements AttendanceService {
         attendanceDao.save(attendance);
 
         // check payment status
-        Payment payment = paymentDao.findByMemberIdAndStatus(member,TransactionStatus.ACTIVE.getCode()).get(0);
+        Payment payment = paymentDao.findAllByMemberIdAndStatus(member,TransactionStatus.ACTIVE.getCode()).get(0);
 
         return compareDates(payment);
 

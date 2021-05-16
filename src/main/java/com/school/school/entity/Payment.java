@@ -25,7 +25,7 @@ public class Payment {
     private Date paymentToDate;
 
     @Column(name = "amount")
-    private String amount;
+    private Float amount;
 
     @Column(name = "status")
     private String status;
@@ -37,6 +37,14 @@ public class Payment {
     private Date expireDate;
 
     public Payment() {
+    }
+
+    public Float getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Float amount) {
+        this.amount = amount;
     }
 
     public Date getExpireDate() {
@@ -88,13 +96,7 @@ public class Payment {
         this.paymentToDate = paymentToDate;
     }
 
-    public String getAmount() {
-        return amount;
-    }
 
-    public void setAmount(String amount) {
-        this.amount = amount;
-    }
 
     public String getStatus() {
         return status;

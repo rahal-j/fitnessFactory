@@ -9,7 +9,7 @@ public class ProductDto {
     private int isExpire;
     private String status;
     private Date dateCreated;
-    private double unitPrice;
+    private Float unitPrice;
 
 
 
@@ -18,11 +18,11 @@ public class ProductDto {
     }
 
 
-    public double getUnitPrice() {
+    public Float getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(double unitPrice) {
+    public void setUnitPrice(Float unitPrice) {
         this.unitPrice = unitPrice;
     }
 

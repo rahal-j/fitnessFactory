@@ -1,6 +1,7 @@
 package com.school.school.PdfExporter;
 
 import com.lowagie.text.*;
+import com.lowagie.text.Font;
 import com.lowagie.text.Image;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
@@ -26,17 +27,21 @@ public class SchedulePdfExporter {
 
     private void writeTableHeader(PdfPTable table){
         PdfPCell cell = new PdfPCell();
-        cell.setBackgroundColor(Color.blue);
+        cell.setBackgroundColor(Color.black);
         cell.setPadding(10);
 
 
-        cell.setPhrase(new Phrase("Exercise"));
+        com.lowagie.text.Font font = com.lowagie.text.FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA);
+        font.setColor(Color.white);
+
+
+        cell.setPhrase(new Phrase("Exercise",font));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("sets"));
+        cell.setPhrase(new Phrase("sets", font));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("Reps"));
+        cell.setPhrase(new Phrase("Reps", font));
         table.addCell(cell);
 
 
@@ -68,10 +73,25 @@ public class SchedulePdfExporter {
 
         PdfWriter.getInstance(document ,response.getOutputStream());
 
+        Font fontH = FontFactory.getFont(FontFactory.COURIER_BOLD);
+        fontH.setColor(Color.blue);
+        fontH.setSize(20);
+
+        Font fontA = FontFactory.getFont(FontFactory.COURIER);
+        fontA.setColor(Color.DARK_GRAY);
         document.open();
 
+        Font fontB = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
 
-        document.add(new Paragraph("Member :"+listSchedules.get(0).getMemberId().getFirstName() +"'s "+ listSchedules.get(0).getName()+" Schedule"));
+
+        document.add(new Paragraph("              FITNESS FACTORY",fontH));
+        document.add(new Paragraph("                         No.25,Malwana,Biyagama",fontA));
+        document.add(new Paragraph("                           Tel:011-2 537 728",fontA));
+        document.add(new Paragraph(listSchedules.get(0).getMemberId().getFirstName() +"'s "+ listSchedules.get(0).getName()+" Schedule",fontB));
+
+
+
+
 
 
         PdfPTable table = new PdfPTable(3);

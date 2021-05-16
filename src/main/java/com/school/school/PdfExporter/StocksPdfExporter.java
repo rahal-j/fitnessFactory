@@ -1,16 +1,16 @@
 package com.school.school.PdfExporter;
 
 import com.lowagie.text.*;
+import com.lowagie.text.Font;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import com.school.school.entity.Stocks;
-import com.sun.javafx.font.FontFactory;
 
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
-import java.awt.Font;
 import java.io.IOException;
+import java.util.List;
 import java.util.List;
 
 public class StocksPdfExporter {
@@ -23,29 +23,29 @@ public class StocksPdfExporter {
 
     private void writeTableHeader(PdfPTable table){
         PdfPCell cell = new PdfPCell();
-        cell.setBackgroundColor(Color.blue);
+        cell.setBackgroundColor(Color.black);
         cell.setPadding(10);
 
 
+        com.lowagie.text.Font font = com.lowagie.text.FontFactory.getFont(com.lowagie.text.FontFactory.HELVETICA);
+        font.setColor(Color.white);
 
 
-        cell.setPhrase(new Phrase("Stocks ID"));
+
+
+        cell.setPhrase(new Phrase("Stocks ID" ,font));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("Product"));
+        cell.setPhrase(new Phrase("Product", font));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("Batch No"));
+        cell.setPhrase(new Phrase("Batch No" ,font));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("expire Date"));
+
+        cell.setPhrase(new Phrase("Quantity" ,font));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("Quantity"));
-        table.addCell(cell);
-
-        cell.setPhrase(new Phrase("Date Created"));
-        table.addCell(cell);
 
 
 
@@ -58,11 +58,9 @@ public class StocksPdfExporter {
 
         for (Stocks stocks : listStocks){
             table.addCell(String.valueOf(stocks.getId()));
-            table.addCell(String.valueOf(stocks.getProduct()));
+            table.addCell(stocks.getProduct().getName());
             table.addCell(String.valueOf(stocks.getBatchNo()));
-            table.addCell(String.valueOf(stocks.getExpireDate()));
             table.addCell(String.valueOf(stocks.getQuantity()));
-            table.addCell(String.valueOf(stocks.getDateCreated()));
 
 
 
@@ -72,19 +70,33 @@ public class StocksPdfExporter {
 
     }
 
+
     public void export(HttpServletResponse response) throws DocumentException, IOException {
 
         Document document = new Document(PageSize.A4);
 
         PdfWriter.getInstance(document ,response.getOutputStream());
 
+        Font fontH = FontFactory.getFont(FontFactory.COURIER_BOLD);
+        fontH.setColor(Color.blue);
+        fontH.setSize(20);
+
+        Font fontA = FontFactory.getFont(FontFactory.COURIER);
+        fontA.setColor(Color.DARK_GRAY);
         document.open();
 
-        document.add(new Paragraph("List of all Stocks"));
+        Font fontB = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
 
 
-        PdfPTable table = new PdfPTable(6);
-        table.setSpacingBefore(15);
+        document.add(new Paragraph("              FITNESS FACTORY",fontH));
+        document.add(new Paragraph("                         No.25,Malwana,Biyagama",fontA));
+        document.add(new Paragraph("                           Tel:011-2 537 728",fontA));
+        document.add(new Paragraph("List of  Stocks",fontB));
+
+
+        PdfPTable table = new PdfPTable(4);
+        table.setSpacingBefore(18);
+
 
         writeTableHeader(table);
         writeTableData(table);

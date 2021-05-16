@@ -25,17 +25,17 @@ public class Product {
     private Date dateCreated;
 
     @Column(name = "unit_price")
-    private Double unitPrice;
+    private Float unitPrice;
 
 
     public Product() {
     }
 
-    public Double getUnitPrice() {
+    public Float getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(Double unitPrice) {
+    public void setUnitPrice(Float unitPrice) {
         this.unitPrice = unitPrice;
     }
 

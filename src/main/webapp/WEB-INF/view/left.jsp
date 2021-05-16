@@ -49,13 +49,13 @@
             </a>
             <ul class="collapse" id="component-nav">
                 <li class=""><a href="/member/"><i class="icon-angle-right"></i> Add Member</a></li>
+                <li class=""><a href="/attendance/insertPage/"><i class="icon-angle-right"></i> Add Member</a></li>
                 <li class=""><a href="/payment/"><i class="icon-angle-right"></i> Add Payment </a></li>
                 <li class=""><a href="/exercise/"><i class="icon-angle-right"></i> Add Exercise </a></li>
                 <li class=""><a href="/schedule/"><i class="icon-angle-right"></i> Add Schedule </a></li>
                 <li class=""><a href="/product/"><i class="icon-angle-right"></i> Add Product </a></li>
-                <li class=""><a href="/subscription/"><i class="icon-angle-right"></i> Add Subscription </a></li>
-                <li class=""><a href="/userRole/"><i class="icon-angle-right"></i> Add User Role </a></li>
-                <li class=""><a href="/stocks/"><i class="icon-angle-right"></i> Add Stocks </a></li>
+                <li class=""><a href="/invoice/"><i class="icon-angle-right"></i> Add Invoice </a></li>
+                 <li class=""><a href="/stocks/"><i class="icon-angle-right"></i> Add Stocks </a></li>
             </ul>
         </li>
 
@@ -74,12 +74,17 @@
                 &nbsp; <span class="label label-info">6</span>&nbsp;
             </a>
             <ul class="collapse" id="pagesr-nav">
-                <li class=""><a href="/member/"><i class="icon-angle-right"></i> Add Member</a></li>
-                <li class=""><a href="/payment/"><i class="icon-angle-right"></i> Add Payment </a></li>
+
+                <li class=""><a href="/exercise/"><i class="icon-angle-right"></i> Add Exercise </a></li>
+
+                <li class=""><a href="/schedule/"><i class="icon-angle-right"></i> Add Schedule </a></li>
+
+
+
 
             </ul>
         </li>
-<%} else if (currentUser.getUserRole().getName().equals("MEMBER")){ %>
+<%} else if (currentUser.getUserRole().getName().equals("Card Marker")){ %>
         <li class="panel">
             <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#pagesr-nav">
                 <i class="icon-table"></i> Member
@@ -90,8 +95,11 @@
                 &nbsp; <span class="label label-info">6</span>&nbsp;
             </a>
             <ul class="collapse" id="pagesr-nav">
-                <li><a href="/userCourse/loadMemberForm"><i class="icon-angle-right"></i> Get Class Schedule </a></li>
-                <li><a href="/roomSchedule/"><i class="icon-angle-right"></i> View Course Schedules </a></li>
+
+                <li class=""><a href="/attendance/insertPage/"><i class="icon-angle-right"></i> Attendance Marking</a></li>
+
+                <li class=""><a href="/member/"><i class="icon-angle-right"></i> Add Member</a></li>
+                <li class=""><a href="/payment/"><i class="icon-angle-right"></i> Add Payment </a></li>
 
             </ul>
         </li>

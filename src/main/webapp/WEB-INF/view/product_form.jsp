@@ -122,25 +122,6 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-md-4">
-                                        <label class="control-label col-md-5 style="
-                                               style="float: right;">Status</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <select name="status" id="subscriptionStatus" class="form-control">
-                                            <option value="">Select Status</option>
-                                            <option value="ACTIVE" <c:if test="${product.status == 'ACTIVE'}"> <c:out
-                                                    value="selected=selected"/></c:if>>ACTIVE
-                                            </option>
-                                            <option value="DEACTIVE" <c:if test="${product.status == 'DEACTIVE'}">
-                                                <c:out value="selected=selected"/></c:if>>DEACTIVE
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="row">
                                 <div class="form-actions no-margin-bottom"
@@ -183,6 +164,19 @@
 <!--END FOOTER -->
 
 <%@include file="footer_src.jsp" %>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.13.4/jquery.mask.min.js"></script>
+
+<script>
+    $(document).ready(function ($) {
+        $('#unitPrice').mask("#,###.##",{reverse : true})
+
+    })
+
+
+
+</script>
+
 
 <script type="text/javascript">
     $(document).ready(function () {

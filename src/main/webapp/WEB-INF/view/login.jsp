@@ -4,7 +4,8 @@
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="../../resources/static/css/login.css"></script>
     <style>
         body, html {
@@ -22,7 +23,7 @@
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner" role="listbox">
                             <div class="carousel-item active">
-                                <img class="d-block img-fluid" src="https://static.pexels.com/photos/33972/pexels-photo.jpg" alt="First slide">
+                                <img class="d-block img-fluid" src="../../resources/static/assets/img/login.jpg" alt="First slide">
                                 <div style="left: 52%;" class="carousel-caption d-none d-md-block">
                                     <div style="alignment: right; width: 570px; background: #000000; border-radius: 3px; overflow: hidden; opacity: 0.6; padding: 20px" class="wrap-login100 banner-text">
                                         <h2 class="text-center">Login Now</h2>
@@ -35,7 +36,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="text-uppercase">Password</label>
-                                                <input type="password" name="password" class="form-control" placeholder="">
+                                                <input id="password" type="password"  name="password" class="form-control" placeholder="">
                                             </div>
 
 
@@ -44,7 +45,7 @@
                                                     <input type="checkbox" class="form-check-input">
                                                     <small>Remember Me</small>
                                                 </label>
-                                                <button type="submit" class="btn btn-login float-right">Submit</button>
+                                                <button type="submit" onclick="encrpt()" class="btn btn-login float-right" >Submit</button>
                                             </div>
 
                                         </form>
@@ -58,5 +59,15 @@
                     </div>
 </div>
 
-</body>
+
+               <%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.5.0/js/md5.min.js"></script>
+
+
+                <script>
+                    function encrpt() {
+                        var password = $("#password").val();
+                        $("#password").val(md5(password));
+                    }
+                </script>
+</body>--%>
 </html>

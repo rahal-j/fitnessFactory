@@ -52,40 +52,21 @@
                 /*
                              this is product form validation */
                 desc: "required",
-                p_price: {
+                name: {
+                    required: true,
+
+                },
+                unitPrice: {
                     required: true,
                     number: true,
-                    min: 1,
 
                 },
-                s_price: {
-                    required: true,
-                    number: true,
-                    min: 1,
-
-                },
-                r_level: {
-                    required: true,
-                    min: 1,
-                    digits: true
-                },
-                unit_id: {
+               isExpire: {
                     required: true,
 
                 },
-                confirm_password2: {
+                status: {
                     required: true,
-                    minlength: 5,
-                    equalTo: "#password2"
-                },
-                agree2: "required",
-                digits: {
-                    required: true,
-                    digits: true
-                },
-                range: {
-                    required: true,
-                    range: [5, 16]
                 }
             },
             messages: {

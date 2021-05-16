@@ -21,10 +21,10 @@ public class Invoice {
     private Integer discount;
 
     @Column(name = "total")
-    private Double total;
+    private Float total;
 
     @Column(name = "sub_total")
-    private Double subtotal;
+    private Float subtotal;
 
     @Column(name = "status")
     private String status;
@@ -33,7 +33,7 @@ public class Invoice {
     private String invoiceId;
 
     @Column(name = "unit_price")
-    private Double unitPrice;
+    private Float unitPrice;
 
     @Column(name = "available_quantity")
     private Integer availableQuantity;
@@ -74,21 +74,9 @@ public class Invoice {
         this.memberId = memberId;
     }
 
-    public Double getUnitPrice() {
-        return unitPrice;
-    }
 
-    public void setUnitPrice(Double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
 
-    public Double getSubtotal() {
-        return subtotal;
-    }
 
-    public void setSubtotal(Double subtotal) {
-        this.subtotal = subtotal;
-    }
 
     public Integer getAvailableQuantity() {
         return availableQuantity;
@@ -130,12 +118,29 @@ public class Invoice {
         this.discount = discount;
     }
 
-    public Double getTotal() {
+
+    public Float getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(Float total) {
         this.total = total;
+    }
+
+    public Float getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(Float subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public Float getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Float unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
     public Product getProduct() {

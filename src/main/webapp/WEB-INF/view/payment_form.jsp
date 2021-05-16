@@ -158,22 +158,18 @@
                                 </div>
                             </div>
 
+
+
                             <div class="row">
                                 <div class="form-group">
-
                                     <div class="col-md-4">
                                         <label class="control-label col-md-5"
-                                               style="float: right;">Membership Expire date</label>
+                                               style="float: right;">Old Membership Expire date</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <div id="sandbox-container">
-                                            <div class="input-group date">
-                                                <input type="text" id="expireDate" name="expireDate" readonly="readonly" class="form-control "
-                                                       value="<c:out value="${payment.expireDate}" />"><span
-                                                    class="input-group-addon"><i
-                                                    class="glyphicon glyphicon-th"></i></span>
-                                            </div>
-                                        </div>
+                                        <input type="text" id="expireDate" name="oldexpireDate"  readonly="readonly"
+                                                class="form-control"
+                                               value="<c:out value="${payment.expireDate}" />">
                                     </div>
                                 </div>
                             </div>
@@ -297,6 +293,12 @@
 
 <%@include file="footer_src.jsp" %>
 
+
+
+
+
+
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.standalone.css">
 
@@ -413,6 +415,7 @@
                         $("#lastName").val(data.data.lastName);
                         $("#email").val(data.data.email);
                         $("#title").val(data.data.title);
+                        $("#expireDate").val(data.data.oldexpireDate);
 
 
 /*

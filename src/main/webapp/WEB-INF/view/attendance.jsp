@@ -66,24 +66,6 @@
 
                             </br>
 
-                            <div class="row">
-                                <div class="form-group">
-                                    <label class="control-label col-md-4">Attendance Marking Type</label>
-
-                                    <div class="col-md-8">
-                                        <div class="checkbox">
-                                            <label> <input class="uniform cus_type" type="radio"
-                                                           name="cus_type" value="rg" /> Barcode
-                                            </label> &nbsp;<label> <input class="uniform cus_type"
-                                                                          type="radio" name="cus_type" value="un_rg"
-                                                                          checked="checked" /> NIC
-                                        </label>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="row">
                                 <div class="form-group">

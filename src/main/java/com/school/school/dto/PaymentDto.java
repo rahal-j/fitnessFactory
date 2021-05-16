@@ -1,5 +1,7 @@
 package com.school.school.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class PaymentDto {
@@ -7,10 +9,16 @@ public class PaymentDto {
     private Integer id;
     private Integer subscriptionId;
     private Integer memberId;
+
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date dateCreated;
+
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date paymentFromDate;
+
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date paymentToDate;
-    private String amount;
+    private Float amount;
     private String status;
     private String createdUser;
     private String memberStatus;
@@ -19,11 +27,20 @@ public class PaymentDto {
     private String Title;
     private String email;
     private Date expireDate;
+    private String oldexpireDate;
 
     public PaymentDto() {
 
     }
 
+
+    public String getOldexpireDate() {
+        return oldexpireDate;
+    }
+
+    public void setOldexpireDate(String oldexpireDate) {
+        this.oldexpireDate = oldexpireDate;
+    }
 
     public Date getExpireDate() {
         return expireDate;
@@ -121,11 +138,11 @@ public class PaymentDto {
         this.paymentToDate = paymentToDate;
     }
 
-    public String getAmount() {
+    public Float getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(Float amount) {
         this.amount = amount;
     }
 

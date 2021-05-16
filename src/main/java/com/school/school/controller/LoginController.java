@@ -1,5 +1,6 @@
 package com.school.school.controller;
 
+import com.school.school.dto.Md5Encryption;
 import com.school.school.dto.ResponseDto;
 import com.school.school.dto.UserDto;
 import com.school.school.entity.User;
@@ -41,7 +42,7 @@ public class LoginController {
     public String login(@RequestParam String username, @RequestParam String password, Model model){
         User user = (User) model.getAttribute("user");
 //        System.out.println(user.getUserRole().getName());
-         user = userService.getUserfromUsernameAndPw(username,password);
+          user = userService.getUserfromUsernameAndPw(username,password);
         if(user != null){
             model.addAttribute("user",user);
             return "dashboard";
